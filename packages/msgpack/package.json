@@ -1,7 +1,6 @@
 {
-  "name": "@urlpack/compression",
+  "name": "@urlpack/msgpack",
   "version": "0.0.1",
-  "main": "./src/index.ts",
   "scripts": {
     "test": "uvu -r esbuild-register",
     "test:watch": "watchlist src tests -- yarn test"
