@@ -1,0 +1,14 @@
+{
+  "name": "@urlpack/encoding",
+  "version": "0.0.1",
+  "scripts": {
+    "test": "uvu -r esbuild-register",
+    "test:watch": "watchlist src tests -- yarn test"
+  },
+  "devDependencies": {
+    "esbuild-register": "^2.6.0",
+    "typescript": "^4.3.5",
+    "uvu": "^0.5.1",
+    "watchlist": "^0.2.3"
+  }
+}
