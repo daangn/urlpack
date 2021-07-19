@@ -1,12 +1,37 @@
 {
   "name": "@urlpack/base62",
   "version": "0.0.1",
+  "source": "./src/index.ts",
+  "main": "./src/index.ts",
+  "publishConfig": {
+    "access": "public",
+    "main": "./lib/index.js",
+    "module": "./lib/index.module.js",
+    "unpkg": "./lib/index.umd.js",
+    "types": "./lib/index.d.ts",
+    "exports": {
+      ".": {
+        "require": "./lib/index.js",
+        "import": "./lib/index.module.js"
+      },
+      "./package.json": "./package.json"
+    }
+  },
   "scripts": {
     "test": "uvu -r esbuild-register",
-    "test:watch": "yarn test || watchlist src tests -- yarn test"
+    "test:watch": "yarn test || watchlist src tests -- yarn test",
+    "build": "microbundle",
+    "dev": "microbundle watch",
+    "prepack": "yarn build"
+  },
+  "dependencies": {
+    "@urlpack/base-vary": "*"
   },
   "devDependencies": {
+    "@types/benchmark": "^2.1.1",
+    "benchmark": "^2.1.4",
     "esbuild-register": "^2.6.0",
+    "microbundle": "^0.13.3",
     "typescript": "^4.3.5",
     "uvu": "^0.5.1",
     "watchlist": "^0.2.3"

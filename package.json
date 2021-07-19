@@ -11,6 +11,11 @@
     "test:watch": "yarn test || watchlist packages/*/{src,tests} -- yarn test"
   },
   "devDependencies": {
+    "@types/benchmark": "^2.1.1",
+    "@urlpack/base-vary": "*",
+    "base-x": "^3.0.8",
+    "base58-js": "^1.0.0",
+    "benchmark": "^2.1.4",
     "esbuild-register": "^2.6.0",
     "typescript": "^4.3.5",
     "uvu": "^0.5.1",

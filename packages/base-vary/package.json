@@ -1,8 +1,10 @@
 {
-  "name": "@urlpack/base58",
+  "name": "@urlpack/base-vary",
   "version": "0.0.1",
-  "source": "./src/index.ts",
+  "license": "MIT",
   "main": "./src/index.ts",
+  "source": "./src/index.ts",
+  "sideEffects": false,
   "publishConfig": {
     "access": "public",
     "main": "./lib/index.js",
@@ -18,26 +20,11 @@
     }
   },
   "scripts": {
-    "test": "uvu -r esbuild-register",
-    "test:watch": "yarn test || watchlist src tests -- yarn test",
     "build": "microbundle",
-    "dev": "microbundle watch",
     "prepack": "yarn build"
   },
-  "files": [
-    "src",
-    "lib",
-    "LICENSE",
-    "README.md"
-  ],
-  "dependencies": {
-    "@urlpack/base-vary": "*"
-  },
   "devDependencies": {
-    "esbuild-register": "^2.6.0",
     "microbundle": "^0.13.3",
-    "typescript": "^4.3.5",
-    "uvu": "^0.5.1",
-    "watchlist": "^0.2.3"
+    "typescript": "^4.3.5"
   }
 }
