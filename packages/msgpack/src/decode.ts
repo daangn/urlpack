@@ -1,10 +1,10 @@
 import type { Input } from './types';
 
-interface Decompress {
+interface Decode {
   (input: Uint8Array): Input;
 }
 
-export const decompress: Decompress = input => {
+export const decode: Decode = input => {
   const first = input[0];
 
   if(first < 0x80){

@@ -1,6 +1,6 @@
 import type { Input } from './types';
 
-interface Compress {
+interface Encode {
   (input: Input): Uint8Array;
 }
 
@@ -108,7 +108,7 @@ export const compressBinary = (input: Uint8Array) => {
   return new Uint8Array();
 };
 
-export const compress: Compress = input => {
+export const encode: Encode = input => {
 
   if(typeof input === 'number'){
     return compressNumber(input);

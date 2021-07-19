@@ -1,9 +1,10 @@
 {
   "name": "@urlpack/msgpack",
   "version": "0.0.1",
+  "main": "./src/index.ts",
   "scripts": {
     "test": "uvu -r esbuild-register",
-    "test:watch": "watchlist src tests -- yarn test"
+    "test:watch": "yarn test || watchlist src tests -- yarn test"
   },
   "devDependencies": {
     "esbuild-register": "^2.6.0",
