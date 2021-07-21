@@ -4,62 +4,106 @@ interface Decode {
   (input: Uint8Array): Input;
 }
 
-export const decode: Decode = input => {
-  let [header] = input;
-  let view = new DataView(input.buffer, 1);
+type DecodeProcessResult = [input: Input, readBytes: number];
+
+const decodeArrayItems = (input: Uint8Array, len: number) => {
+  let acc = 0;
+  let array: Array<Input> = Array(len);
+  for (let i = 0; i < len; i++) {
+    let [item, readBytes] = _decode(input.slice(acc), acc);
+    array[i] = item;
+    acc += readBytes;
+  }
+  return [array, acc] as const;
+};
+
+const _decode = (input: Uint8Array, pos = 0): DecodeProcessResult => {
+  let acc = 0;
+  let header = input[acc++];
 
   if (header < 0x80) {
-    return header;
+    return [header, acc];
   } else if (header < 0x90) {
-    return null;
+    return [null, acc];
   } else if (header < 0xa0) {
-    return null;
+    let itemLen = header & 15;
+    let array: Array<Input> = Array(itemLen);
+    for (let i = 0; i < itemLen; i++) {
+      let [item, readBytes] = _decode(input.slice(acc), acc);
+      array[i] = item;
+      acc += readBytes;
+    }
+    return [array, acc];
   } else if (header < 0xc0) {
-    const length = 0x1f & header;
-    return new TextDecoder().decode(input.slice(1, length + 1));
+    let len = 0x1f & header;
+    let str = new TextDecoder().decode(input.slice(acc, acc + len));
+    return [str, acc + len];
   } else if (header === 0xc0) {
-    return null;
+    return [null, acc];
   } else if (header === 0xc1) {
-    return null;
+    return [null, acc];
   } else if (header === 0xc2) {
-    return false;
+    return [false, acc];
   } else if (header === 0xc3) {
-    return true;
+    return [true, acc];
   } else if (header === 0xc4) {
-    const length = input[1];
-    return input.slice(2, length + 2);
+    let len = input[acc++];
+    let bin = input.slice(acc, acc + len);
+    return [bin, acc + len];
   } else if (header === 0xc5) {
-    const length = view.getUint16(0, false);
-    return input.slice(3, length + 3);
+    let view = new DataView(input.buffer, acc);
+    let len = view.getUint16(0, false);
+    acc += 2;
+    let data = input.slice(acc, acc + len);
+    return [data, acc + len];
   } else if (header === 0xc6) {
-    const length = view.getUint32(0, false);
-    return input.slice(5, length + 5);
+    let view = new DataView(input.buffer, acc);
+    let len = view.getUint32(0, false);
+    acc += 4;
+    let data = input.slice(acc, acc + len);
+    return [data, acc + len];
   } else if (header === 0xc7) {
-    return null;
+    return [null, acc];
   } else if (header === 0xc8) {
-    return null;
+    return [null, acc];
   } else if (header === 0xc9) {
-    return null;
+    return [null, acc];
   } else if (header === 0xca) {
-    return view.getFloat32(0, false);
+    let view = new DataView(input.buffer, acc);
+    let data = view.getFloat32(0, false);
+    return [data, acc + 4];
   } else if (header === 0xcb) {
-    return view.getFloat64(0, false);
+    let view = new DataView(input.buffer, acc);
+    let data = view.getFloat64(0, false);
+    return [data, acc + 8];
   } else if (header === 0xcc) {
-    return input[1];
+    let data = input[acc++];
+    return [data, acc];
   } else if (header === 0xcd) {
-    return view.getUint16(0, false);
+    let view = new DataView(input.buffer, acc);
+    let data = view.getUint16(0, false);
+    return [data, acc + 2];
   } else if (header === 0xce) {
-    return view.getUint32(0, false);
+    let view = new DataView(input.buffer, acc);
+    let data = view.getUint32(0, false);
+    return [data, acc + 4];
   } else if (header === 0xcf) {
-    const hi = view.getUint32(0, false);
-    const lo = view.getUint32(4, false);
-    return (hi * Math.pow(256, 4)) + lo;
+    let view = new DataView(input.buffer, acc);
+    let hi = view.getUint32(0, false);
+    let lo = view.getUint32(4, false);
+    let data = (hi * Math.pow(256, 4)) + lo;
+    return [data, acc + 8];
   } else if (header === 0xd0) {
-    return view.getInt8(0);
+    let view = new DataView(input.buffer, acc);
+    return [view.getInt8(0), acc + 1];
   } else if (header === 0xd1) {
-    return view.getInt16(0, false);
+    let view = new DataView(input.buffer, acc);
+    let data = view.getInt16(0, false);
+    return [data, acc + 2];
   } else if (header === 0xd2) {
-    return view.getInt32(0, false);
+    let view = new DataView(input.buffer, acc);
+    let data = view.getInt32(0, false);
+    return [data, acc + 4];
   } else if (header === 0xd3) {
     let carry = 1;
     for (let i = 8; i >= 1; i--) {
@@ -67,39 +111,63 @@ export const decode: Decode = input => {
       input[i] = v & 0xff;
       carry = v >> 8;
     }
-    const hi = view.getUint32(0, false);
-    const lo = view.getUint32(4, false);
-    return -((hi * Math.pow(256, 4)) + lo);
+    let view = new DataView(input.buffer, acc);
+    let hi = view.getUint32(0, false);
+    let lo = view.getUint32(4, false);
+    let data = -((hi * Math.pow(256, 4)) + lo);
+    return [data, acc + 8];
   } else if (header === 0xd4) {
-    return null;
+    return [null, acc];
   } else if (header === 0xd5) {
-    return null;
+    return [null, acc];
   } else if (header === 0xd6) {
-    return null;
+    return [null, acc];
   } else if (header === 0xd7) {
-    return null;
+    return [null, acc];
   } else if (header === 0xd8) {
-    return null;
+    return [null, acc];
   } else if (header === 0xd9) {
-    const length = input[1];
-    return new TextDecoder().decode(input.slice(2, length + 2));
+    let len = input[acc++];
+    let data = new TextDecoder().decode(input.slice(acc, acc + len));
+    return [data, acc + len];
   } else if (header === 0xda) {
-    const length = view.getUint16(0, false);
-    return new TextDecoder().decode(input.slice(3, length + 3));
+    let view = new DataView(input.buffer, acc);
+    let len = view.getUint16(0, false);
+    acc += 2;
+
+    let data = new TextDecoder().decode(input.slice(acc, acc + len));
+    return [data, acc + len];
   } else if (header === 0xdb) {
-    const length = view.getUint32(0, false);
-    return new TextDecoder().decode(input.slice(5, length + 5));
+    let view = new DataView(input.buffer, acc);
+    let len = view.getUint32(0, false);
+    acc += 4;
+
+    let data = new TextDecoder().decode(input.slice(acc, acc + len));
+    return [data, acc + len];
   } else if (header === 0xdc) {
-    return null;
+    let view = new DataView(input.buffer, acc);
+    let len = view.getUint16(0, false);
+    acc += 2;
+
+    let [array, readBytes] = decodeArrayItems(input.slice(acc, acc + len), len);
+    return [array, acc + readBytes];
   } else if (header === 0xdd) {
-    return null;
+    return [null, acc];
   } else if (header === 0xde) {
-    return null;
+    return [null, acc];
   } else if (header === 0xdf) {
-    return null;
+    return [null, acc];
   } else if (header < 0x100) {
-    return -((header ^ 0xff) + 1);
+    return [~(header ^ 255), acc];
   }
 
-  return '';
+  throw new Error(`Unknown header ${header} at ${pos}`);
+};
+
+export const decode: Decode = input => {
+  let [data, readBytes] = _decode(input, 0);
+  if (readBytes !== input.length) {
+    throw new Error(`invalid input length, expected ${input.length}, but got ${readBytes}`);
+  }
+  return data;
 };

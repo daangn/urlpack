@@ -93,16 +93,49 @@ new Benchmark.Suite()
   msgpackLite.encode('Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris molestie, sem sed rutrum euismod, leo tellus mattis velit, nec consequat lacus mi quis arcu. Etiam eget urna sem. Sed nulla ex, maximus eget ornare sit amet, tristique at diam. Etiam viverra feugiat turpis, ac varius dui mollis ut.');
 })
 .add('encode bin - urlpack', () => {
-  const bin8 = new Uint8Array(new Array(2**8 - 1).fill(0).map((_, idx) => idx % 256));
+  const bin8 = new Uint8Array(Array(2**8 - 1).fill(0).map((_, idx) => idx % 256));
   urlpack.encode(bin8);
 })
 .add('encode bin - msgpack5', () => {
-  const bin8 = new Uint8Array(new Array(2**8 - 1).fill(0).map((_, idx) => idx % 256));
+  const bin8 = new Uint8Array(Array(2**8 - 1).fill(0).map((_, idx) => idx % 256));
   msgpack5.encode(bin8);
 })
 .add('encode bin - msgpack-lite', () => {
-  const bin8 = new Uint8Array(new Array(2**8 - 1).fill(0).map((_, idx) => idx % 256));
+  const bin8 = new Uint8Array(Array(2**8 - 1).fill(0).map((_, idx) => idx % 256));
   msgpackLite.encode(bin8);
+})
+.add('encode fixarray - urlpack', () => {
+  urlpack.encode([null, null, null, null, null]);
+})
+.add('encode fixarray - msgpack5', () => {
+  msgpack5.encode([null, null, null, null, null]);
+})
+.add('encode fixarray - msgpack-lite', () => {
+  msgpackLite.encode([null, null, null, null, null]);
+})
+.add('encode array 8 - urlpack', () => {
+  const arr = Array(2**8 - 1).fill(null);
+  urlpack.encode(arr);
+})
+.add('encode array 8 - msgpack5', () => {
+  const arr = Array(2**8 - 1).fill(null);
+  msgpack5.encode(arr);
+})
+.add('encode array 8 - msgpack-lite', () => {
+  const arr = Array(2**8 - 1).fill(null);
+  msgpackLite.encode(arr);
+})
+.add('encode array 16 - urlpack', () => {
+  const arr = Array(2**16 - 1).fill(null);
+  urlpack.encode(arr);
+})
+.add('encode array 16 - msgpack5', () => {
+  const arr = Array(2**16 - 1).fill(null);
+  msgpack5.encode(arr);
+})
+.add('encode array 16 - msgpack-lite', () => {
+  const arr = Array(2**16 - 1).fill(null);
+  msgpackLite.encode(arr);
 })
 .on('cycle', event => {
   console.log(event.target.toString());

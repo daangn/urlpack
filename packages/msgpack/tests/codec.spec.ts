@@ -170,4 +170,16 @@ test('float', () => {
   ]);
 });
 
+test('array', () => {
+  assertCase([
+    [null, null, null, null, null],
+    new Uint8Array([0x95, 0xc0, 0xc0, 0xc0, 0xc0, 0xc0]),
+  ]);
+
+  assertCase([
+    Array(2**16-1).fill(null),
+    new Uint8Array([0xdc, 0xff, 0xff, ...Array(2**16-1).fill(0xc0)]),
+  ]);
+});
+
 test.run();

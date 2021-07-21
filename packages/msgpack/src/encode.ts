@@ -162,21 +162,68 @@ const encodeBinary = (input: Uint8Array) => {
   return buf;
 };
 
+const encodeArray = (items: Input[]) => {
+  let itemLen = items.length;
+  let bufLen = 0;
+  let cache = Array<Uint8Array>(itemLen);
+  for (let i = 0; i < itemLen; i++) {
+    let buf = encode(items[i]);
+    cache[i] = buf;
+    bufLen += buf.length;
+  }
+
+  let array: Uint8Array;
+  let offset: number;
+  if (itemLen < 16) {
+    offset = 1;
+    array = new Uint8Array(offset + bufLen);
+    array[0] = 0x90 | itemLen;
+  } else if (itemLen < 65536) {
+    offset = 3;
+    array = new Uint8Array(offset + bufLen);
+    array[0] = 0xdc;
+    array[1] = 0xff & (itemLen >> 8);
+    array[2] = 0xff & itemLen;
+  } else if (itemLen < 4294967296) {
+    offset = 5;
+    array = new Uint8Array(offset + bufLen);
+    array[0] = 0xdd;
+    array[1] = 0xff & (itemLen >> 24);
+    array[2] = 0xff & (itemLen >> 16);
+    array[3] = 0xff & (itemLen >> 8);
+    array[4] = 0xff & itemLen;
+  } else {
+    throw new Error('array length is too long');
+  }
+
+  for (let subarray of cache) {
+    for (let i = 0; i < subarray.length; i++) {
+      array[offset++] = subarray[i];
+    }
+  }
+
+  return array;
+};
+
 export const encode: Encode = input => {
   if (typeof input === 'string') {
     return encodeString(input);
   }
 
+  if (Array.isArray(input)) {
+    return encodeArray(input);
+  }
+
   if (input === null) {
-    return new Uint8Array([0xC0]);
+    return new Uint8Array([0xc0]);
   }
 
   if (input === false) {
-    return new Uint8Array([0xC2]);
+    return new Uint8Array([0xc2]);
   }
 
   if (input === true) {
-    return new Uint8Array([0xC3]);
+    return new Uint8Array([0xc3]);
   }
 
   if (typeof input === 'number') {
