@@ -1,6 +1,6 @@
 const { Benchmark } = require('benchmark');
 
-const urlpack = require('@urlpack/base-vary');
+const urlpack = require('@urlpack/base-vary/lib');
 const baseX = require('base-x');
 const base58js = require('base58-js');
 

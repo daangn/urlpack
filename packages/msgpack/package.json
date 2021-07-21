@@ -3,12 +3,11 @@
   "version": "0.0.1",
   "license": "MIT",
   "source": "./src/index.ts",
-  "main": "./lib/index.ts",
+  "main": "./src/index.ts",
   "publishConfig": {
     "access": "public",
     "main": "./lib/index.js",
     "module": "./lib/index.module.js",
-    "unpkg": "./lib/index.umd.js",
     "types": "./lib/index.d.ts",
     "exports": {
       ".": {
@@ -21,11 +20,22 @@
   "scripts": {
     "test": "uvu -r esbuild-register",
     "test:watch": "yarn test || true && watchlist src tests -- yarn test",
-    "build": "microbundle",
-    "dev": "microbundle watch",
+    "build": "concurrently \"yarn:build:*\"",
+    "build:cjs": "esbuild src/index.ts --bundle --sourcemap --minify --format=cjs --platform=node --target=node12 --outfile=lib/index.js",
+    "build:esm": "esbuild src/index.ts --bundle --sourcemap --minify --format=esm --outfile=lib/index.module.js",
+    "build:dts": "tsc --emitDeclarationOnly",
+    "_build": "microbundle",
+    "_dev": "microbundle watch",
     "prepack": "yarn build"
   },
+  "files": [
+    "src",
+    "lib",
+    "README",
+    "LICENSE"
+  ],
   "devDependencies": {
+    "concurrently": "^6.2.0",
     "esbuild": "^0.12.15",
     "esbuild-register": "^2.6.0",
     "microbundle": "^0.13.3",
