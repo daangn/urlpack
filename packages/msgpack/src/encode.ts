@@ -135,15 +135,31 @@ const encodeString = (input: string) => {
 };
 
 const encodeBinary = (input: Uint8Array) => {
-  if (input.length < 256) {
-    return new Uint8Array([0xc4, input.length, ...input]);
-  } else if (input.length < 65536) {
-    return new Uint8Array([0xc5, 0xff & (input.length >> 8), 0xff & input.length, ...input]);
-  } else if (input.length < uint64bound) {
-    return new Uint8Array([0xc6, 0xff & (input.length >> 24), 0xff & (input.length >> 16), 0xff & (input.length >> 8), 0xff & input.length, ...input]);
+  let buf: Uint8Array;
+  let len = input.length;
+  if (len < 256) {
+    buf = new Uint8Array(2 + len);
+    buf[0] = 0xc4;
+    buf[1] = len;
+    buf.set(input, 2);
+  } else if (len < 65536) {
+    buf = new Uint8Array(3 + len);
+    buf[0] = 0xc5;
+    buf[1] = len >> 8;
+    buf[2] = 0xff & len;
+    buf.set(input, 3);
+  } else if (len < uint64bound) {
+    buf = new Uint8Array(5 + len);
+    buf[0] = 0xc6;
+    buf[1] = 0xff & (len >> 24);
+    buf[2] = 0xff & (len >> 16);
+    buf[3] = 0xff & (len >> 8);
+    buf[4] = 0xff & len;
+    buf.set(input, 5);
+  } else {
+    buf = new Uint8Array();
   }
-
-  return new Uint8Array();
+  return buf;
 };
 
 export const encode: Encode = input => {

@@ -92,6 +92,18 @@ new Benchmark.Suite()
   msgpackLite.encode('Hello World!');
   msgpackLite.encode('Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris molestie, sem sed rutrum euismod, leo tellus mattis velit, nec consequat lacus mi quis arcu. Etiam eget urna sem. Sed nulla ex, maximus eget ornare sit amet, tristique at diam. Etiam viverra feugiat turpis, ac varius dui mollis ut.');
 })
+.add('encode bin - urlpack', () => {
+  const bin8 = new Uint8Array(new Array(2**8 - 1).fill(0).map((_, idx) => idx % 256));
+  urlpack.encode(bin8);
+})
+.add('encode bin - msgpack5', () => {
+  const bin8 = new Uint8Array(new Array(2**8 - 1).fill(0).map((_, idx) => idx % 256));
+  msgpack5.encode(bin8);
+})
+.add('encode bin - msgpack-lite', () => {
+  const bin8 = new Uint8Array(new Array(2**8 - 1).fill(0).map((_, idx) => idx % 256));
+  msgpackLite.encode(bin8);
+})
 .on('cycle', event => {
   console.log(event.target.toString());
 })
