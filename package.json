@@ -11,6 +11,7 @@
     "test:watch": "yarn test || true && watchlist packages/*/src packages/*/tests -- yarn test"
   },
   "devDependencies": {
+    "@msgpack/msgpack": "^2.7.0",
     "@types/benchmark": "^2.1.1",
     "@urlpack/base-vary": "*",
     "base-x": "^3.0.8",
