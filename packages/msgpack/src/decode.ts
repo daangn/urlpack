@@ -6,6 +6,11 @@ interface Decode {
 
 type DecodeProcessResult = [input: Input, readBytes: number];
 
+const decodeString = (input: Uint8Array) => {
+  let decoder = new TextDecoder();
+  return decoder.decode(input);
+};
+
 const decodeArrayItems = (input: Uint8Array, len: number) => {
   let acc = 0;
   let array: Array<Input> = Array(len);
@@ -17,6 +22,25 @@ const decodeArrayItems = (input: Uint8Array, len: number) => {
   return [array, acc] as const;
 };
 
+const decodeObjectEntries = (input: Uint8Array, size: number, pos = 0) => {
+  let acc = 0;
+  let entries: Array<[key: string, value: Input]> = Array(size);
+  for (let i = 0; i < size; i++) {
+    let [key, keySize] = _decode(input.slice(acc), pos + acc);
+    if (typeof key !== 'string') {
+      throw new Error(`expected string at ${pos}, but got ${typeof key}`);
+    }
+    acc += keySize;
+
+    let [value, valueSize] = _decode(input.slice(acc), pos + acc);
+    acc += valueSize;
+
+    entries[i] = [key, value];
+  }
+
+  return [Object.fromEntries(entries), acc] as const;
+};
+
 const _decode = (input: Uint8Array, pos = 0): DecodeProcessResult => {
   let acc = 0;
   let header = input[acc++];
@@ -24,19 +48,16 @@ const _decode = (input: Uint8Array, pos = 0): DecodeProcessResult => {
   if (header < 0x80) {
     return [header, acc];
   } else if (header < 0x90) {
-    return [null, acc];
+    let len = header & 7;
+    let [data, readBytes] = decodeObjectEntries(input.slice(acc), len, pos + acc);
+    return [data, acc + readBytes];
   } else if (header < 0xa0) {
-    let itemLen = header & 15;
-    let array: Array<Input> = Array(itemLen);
-    for (let i = 0; i < itemLen; i++) {
-      let [item, readBytes] = _decode(input.slice(acc), acc);
-      array[i] = item;
-      acc += readBytes;
-    }
-    return [array, acc];
+    let len = header & 15;
+    let [data, readBytes] = decodeArrayItems(input.slice(acc), len);
+    return [data, acc + readBytes];
   } else if (header < 0xc0) {
     let len = 0x1f & header;
-    let str = new TextDecoder().decode(input.slice(acc, acc + len));
+    let str = decodeString(input.slice(acc, acc + len));
     return [str, acc + len];
   } else if (header === 0xc0) {
     return [null, acc];
@@ -128,40 +149,46 @@ const _decode = (input: Uint8Array, pos = 0): DecodeProcessResult => {
     return [null, acc];
   } else if (header === 0xd9) {
     let len = input[acc++];
-    let data = new TextDecoder().decode(input.slice(acc, acc + len));
+    let data = decodeString(input.slice(acc));
     return [data, acc + len];
   } else if (header === 0xda) {
     let view = new DataView(input.buffer, acc);
     let len = view.getUint16(0, false);
     acc += 2;
-
-    let data = new TextDecoder().decode(input.slice(acc, acc + len));
+    let data = decodeString(input.slice(acc));
     return [data, acc + len];
   } else if (header === 0xdb) {
     let view = new DataView(input.buffer, acc);
     let len = view.getUint32(0, false);
     acc += 4;
-
-    let data = new TextDecoder().decode(input.slice(acc, acc + len));
+    let data = decodeString(input.slice(acc));
     return [data, acc + len];
   } else if (header === 0xdc) {
     let view = new DataView(input.buffer, acc);
     let len = view.getUint16(0, false);
     acc += 2;
 
-    let [array, readBytes] = decodeArrayItems(input.slice(acc, acc + len), len);
+    let [array, readBytes] = decodeArrayItems(input.slice(acc), len);
     return [array, acc + readBytes];
   } else if (header === 0xdd) {
     return [null, acc];
   } else if (header === 0xde) {
-    return [null, acc];
+    let view = new DataView(input.buffer, acc);
+    let len = view.getUint16(0, false);
+    acc += 2;
+    let [data, readBytes] = decodeObjectEntries(input.slice(acc), len, pos + acc);
+    return [data, acc + readBytes];
   } else if (header === 0xdf) {
-    return [null, acc];
+    let view = new DataView(input.buffer, acc);
+    let len = view.getUint32(0, false);
+    acc += 4;
+    let [data, readBytes] = decodeObjectEntries(input.slice(acc), len, pos + acc);
+    return [data, acc + readBytes];
   } else if (header < 0x100) {
     return [~(header ^ 255), acc];
   }
 
-  throw new Error(`Unknown header ${header} at ${pos}`);
+  throw new Error(`unknown header ${header} at ${pos}`);
 };
 
 export const decode: Decode = input => {

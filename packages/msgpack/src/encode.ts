@@ -173,7 +173,7 @@ const encodeArray = (items: Input[]) => {
   }
 
   let array: Uint8Array;
-  let offset: number;
+  let offset = 0;
   if (itemLen < 16) {
     offset = 1;
     array = new Uint8Array(offset + bufLen);
@@ -205,6 +205,59 @@ const encodeArray = (items: Input[]) => {
   return array;
 };
 
+const encodeMap = (input: { [key: string]: Input }) => {
+  let entries = Object.entries(input);
+  let entriesLen = entries.length;
+  let keyCache = Array<Uint8Array>(entriesLen);
+  let valCache = Array<Uint8Array>(entriesLen);
+  let bufLen = 0;
+  for (let i = 0; i < entriesLen; i++) {
+    let [key, value] = entries[i];
+
+    let keyBuf = encodeString(key);
+    keyCache[i] = keyBuf;
+
+    let valueBuf = encode(value);
+    valCache[i] = valueBuf;
+
+    bufLen += keyBuf.length + valueBuf.length;
+  }
+
+  let array: Uint8Array;
+  let offset = 0;
+  if (entriesLen < 16) {
+    offset = 1;
+    array = new Uint8Array(offset + bufLen);
+    array[0] = 0x80 | entriesLen;
+  } else if (entriesLen < 65536) {
+    offset = 3;
+    array = new Uint8Array(offset + bufLen);
+    array[0] = 0xde;
+    array[1] = 0xff & (entriesLen >> 8);
+    array[2] = 0xff & entriesLen;
+  } else if (entriesLen < 4294967296) {
+    offset = 5;
+    array = new Uint8Array(offset + bufLen);
+    array[0] = 0xdf;
+    array[1] = 0xff & (entriesLen >> 24);
+    array[2] = 0xff & (entriesLen >> 16);
+    array[3] = 0xff & (entriesLen >> 8);
+    array[4] = 0xff & entriesLen;
+  } else {
+    throw new Error('map size is too big');
+  }
+
+  for (let i = 0; i < entriesLen; i++) {
+    array.set(keyCache[i], offset);
+    offset += keyCache[i].length;
+
+    array.set(valCache[i], offset);
+    offset += valCache[i].length;
+  }
+
+  return array;
+};
+
 export const encode: Encode = input => {
   if (typeof input === 'string') {
     return encodeString(input);
@@ -214,8 +267,12 @@ export const encode: Encode = input => {
     return encodeArray(input);
   }
 
-  if (input === null) {
+  if (input instanceof Uint8Array) {
+    return encodeBinary(input);
+  } else if (input === null) {
     return new Uint8Array([0xc0]);
+  } else if (typeof input === 'object') {
+    return encodeMap(input);
   }
 
   if (input === false) {
@@ -234,9 +291,6 @@ export const encode: Encode = input => {
     }
   }
 
-  if (input instanceof Uint8Array) {
-    return encodeBinary(input);
-  }
 
   return new Uint8Array();
 };
