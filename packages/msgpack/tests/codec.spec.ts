@@ -196,4 +196,11 @@ test('mixed', () => {
   ]);
 });
 
+test('timestamp', () => {
+  assertCase([
+    new Date(1626881119799),
+    new Uint8Array([0xd7, 0xff, 0xbe, 0x7f, 0x17, 0x00, 0x60, 0xf8, 0x3c, 0x5f]),
+  ]);
+});
+
 test.run();

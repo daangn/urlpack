@@ -1,12 +1,14 @@
 import type { Input } from './types';
 
-interface Encode {
-  (input: Input): Uint8Array;
-}
+import { timestampEncoder } from './ext/TimestampEncoder';
 
 let textEncoder = new TextEncoder();
 let isFloat = (num: number) => num % 1 > 0;
 let uint64bound = 0x100000000;
+
+interface Encode {
+  (input: Input): Uint8Array;
+}
 
 const numberUint8Array = (input: number, bits: 8 | 16 | 32 | 64, header?: number) => {
   let array = new Uint8Array((bits >> 3) + (header ? 1 : 0));
@@ -205,7 +207,7 @@ const encodeArray = (items: Input[]) => {
   return array;
 };
 
-const encodeMap = (input: { [key: string]: Input }) => {
+const encodeMap = (input: { [key: string]: Input } | object) => {
   let entries = Object.entries(input);
   let entriesLen = entries.length;
   let keyCache = Array<Uint8Array>(entriesLen);
@@ -272,6 +274,9 @@ export const encode: Encode = input => {
   } else if (input === null) {
     return new Uint8Array([0xc0]);
   } else if (typeof input === 'object') {
+    if (timestampEncoder.check(input)) {
+      return timestampEncoder.encode(input);
+    }
     return encodeMap(input);
   }
 
@@ -290,7 +295,6 @@ export const encode: Encode = input => {
       return encodeInteger(input);
     }
   }
-
 
   return new Uint8Array();
 };
