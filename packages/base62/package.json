@@ -25,7 +25,7 @@
     "prepack": "yarn build"
   },
   "dependencies": {
-    "@urlpack/base-vary": "*"
+    "@urlpack/base-codec": "*"
   },
   "devDependencies": {
     "@types/benchmark": "^2.1.1",

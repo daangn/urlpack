@@ -1,6 +1,6 @@
-import { makeDecoder } from '@urlpack/base-vary';
+import { makeBaseDecoder } from '@urlpack/base-codec';
 
 import { baseAlphabet } from './util';
 
-const defaultDecoder = makeDecoder(baseAlphabet);
+const defaultDecoder = makeBaseDecoder(baseAlphabet);
 export const decode: (encoding: string) => Uint8Array = defaultDecoder.decode;

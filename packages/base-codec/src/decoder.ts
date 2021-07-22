@@ -1,10 +1,10 @@
-interface MakeDecoder {
+interface MakeBaseDecoder {
   (baseAlphabet: string): {
     decode: (input: string) => Uint8Array;
   };
 }
 
-export const makeDecoder: MakeDecoder = baseAlphabet => {
+export const makeBaseDecoder: MakeBaseDecoder = baseAlphabet => {
   let n = baseAlphabet.length;
   if (n === 0 || n > 255) {
     throw new Error('Invalid base alphabet length: ' + n);

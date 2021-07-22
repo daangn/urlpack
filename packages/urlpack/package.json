@@ -3,7 +3,8 @@
   "version": "0.0.1",
   "scripts": {
     "test": "uvu -r esbuild-register",
-    "test:watch": "watchlist src tests -- yarn test"
+    "test:watch": "watchlist src tests -- yarn test",
+    "build": "true"
   },
   "devDependencies": {
     "esbuild-register": "^2.6.0",

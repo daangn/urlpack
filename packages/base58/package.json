@@ -31,7 +31,7 @@
     "README.md"
   ],
   "dependencies": {
-    "@urlpack/base-vary": "*"
+    "@urlpack/base-codec": "*"
   },
   "devDependencies": {
     "esbuild-register": "^2.6.0",
