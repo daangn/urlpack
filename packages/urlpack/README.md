@@ -1,5 +1,9 @@
 # urlpack
 
+[![Package Version](https://img.shields.io/npm/v/urlpack)](https://npm.im/urlpack)
+[![License](https://img.shields.io/npm/l/urlpack)](#License)
+[![Bundle Size](https://img.shields.io/bundlephobia/minzip/urlpack)](https://bundlephobia.com/package/urlpack)
+
 Compress JSON data into compact & URL-safe formats
 
 - ES Modules & Browser compatible
