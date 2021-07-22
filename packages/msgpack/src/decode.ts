@@ -1,5 +1,7 @@
 import type { Input } from './types';
 
+import { timestampDecoder } from './ext/TimestampDecoder';
+
 interface Decode {
   (input: Uint8Array): Input;
 }
@@ -84,11 +86,26 @@ const _decode = (input: Uint8Array, pos = 0): DecodeProcessResult => {
     let data = input.slice(acc, acc + len);
     return [data, acc + len];
   } else if (header === 0xc7) {
-    return [null, acc];
+    let view = new DataView(input.buffer);
+    let len = view.getUint8(acc++);
+    let type = view.getInt8(acc++);
+    if (type === timestampDecoder.type) {
+      let [data, readBytes] = timestampDecoder.decode(input.slice(acc), len);
+      return [data, acc + readBytes];
+    }
+    throw new Error(`unknown extension type ${type}`);
   } else if (header === 0xc8) {
-    return [null, acc];
+    let view = new DataView(input.buffer);
+    // let len = view.getUint16(acc, false);
+    acc += 2;
+    let type = view.getInt8(acc++);
+    throw new Error(`unknown extension type ${type}`);
   } else if (header === 0xc9) {
-    return [null, acc];
+    let view = new DataView(input.buffer);
+    // let len = view.getUint32(acc, false);
+    acc += 4;
+    let type = view.getInt8(acc++);
+    throw new Error(`unknown extension type ${type}`);
   } else if (header === 0xca) {
     let view = new DataView(input.buffer, acc);
     let data = view.getFloat32(0, false);
@@ -138,15 +155,33 @@ const _decode = (input: Uint8Array, pos = 0): DecodeProcessResult => {
     let data = -((hi * Math.pow(256, 4)) + lo);
     return [data, acc + 8];
   } else if (header === 0xd4) {
-    return [null, acc];
+    let view = new DataView(input.buffer);
+    let type = view.getInt8(acc++);
+    throw new Error(`unknown extension type ${type}`);
   } else if (header === 0xd5) {
-    return [null, acc];
+    let view = new DataView(input.buffer);
+    let type = view.getInt8(acc++);
+    throw new Error(`unknown extension type ${type}`);
   } else if (header === 0xd6) {
-    return [null, acc];
+    let view = new DataView(input.buffer);
+    let type = view.getInt8(acc++);
+    if (type === timestampDecoder.type) {
+      let [data, readBytes] = timestampDecoder.decode(input.slice(acc), 4);
+      return [data, acc + readBytes];
+    }
+    throw new Error(`unknown extension type ${type}`);
   } else if (header === 0xd7) {
-    return [null, acc];
+    let view = new DataView(input.buffer);
+    let type = view.getInt8(acc++);
+    if (type === timestampDecoder.type) {
+      let [data, readBytes] = timestampDecoder.decode(input.slice(acc), 8);
+      return [data, acc + readBytes];
+    }
+    throw new Error(`unknown extension type ${type}`);
   } else if (header === 0xd8) {
-    return [null, acc];
+    let view = new DataView(input.buffer);
+    let type = view.getInt8(acc++);
+    throw new Error(`unknown extension type ${type}`);
   } else if (header === 0xd9) {
     let len = input[acc++];
     let data = decodeString(input.slice(acc));

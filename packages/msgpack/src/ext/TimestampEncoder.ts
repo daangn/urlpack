@@ -6,6 +6,8 @@ export const timestampEncoder: EncoderExtension<Date> = {
   check(input): input is Date {
     return input instanceof Date;
   },
+  // almost copy-pated from msgpack5's DateCodec implementation
+  // https://github.com/mcollina/msgpack5/blob/master/lib/codecs/DateCodec.js
   encode(input) {
     let millis = input.getTime();
     let seconds = millis / 1000 | 0;
