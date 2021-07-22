@@ -72,7 +72,7 @@ The current implementation is not very optimized.
 
 It is suitable for use as a callback for webpage that doesn't run the codec at high frequency, etc.
 
-If you are dealing with large data or want very high-performance, We recommend using the [official JS implementation]. Other implementations may better on the Node.js environment.
+If you are dealing with large data or want very high-performance, We recommend using the [official JS implementation](https://github.com/msgpack/msgpack-javascript). Other implementations may better on the Node.js environment.
 
 ## Benchmark
 
