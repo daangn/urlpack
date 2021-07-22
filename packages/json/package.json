@@ -4,19 +4,18 @@
   "license": "MIT",
   "sideEffects": false,
   "source": "./src/index.ts",
-  "main": "./src/index.ts",
+  "main": "./lib/index.js",
+  "module": "./lib/index.module.js",
+  "types": "./lib/index.d.ts",
+  "exports": {
+    ".": {
+      "require": "./lib/index.js",
+      "import": "./lib/index.module.js"
+    },
+    "./package.json": "./package.json"
+  },
   "publishConfig": {
-    "access": "public",
-    "main": "./lib/index.js",
-    "module": "./lib/index.module.js",
-    "types": "./lib/index.d.ts",
-    "exports": {
-      ".": {
-        "require": "./lib/index.js",
-        "import": "./lib/index.module.js"
-      },
-      "./package.json": "./package.json"
-    }
+    "access": "public"
   },
   "scripts": {
     "test": "uvu -r esbuild-register",
