@@ -50,7 +50,7 @@ const _decode = (input: Uint8Array, pos = 0): DecodeProcessResult => {
   if (header < 0x80) {
     return [header, acc];
   } else if (header < 0x90) {
-    let len = header & 7;
+    let len = header & 15;
     let [data, readBytes] = decodeObjectEntries(input.slice(acc), len, pos + acc);
     return [data, acc + readBytes];
   } else if (header < 0xa0) {
