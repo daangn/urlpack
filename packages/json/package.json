@@ -6,6 +6,7 @@
   "source": "./src/index.ts",
   "main": "./src/index.ts",
   "publishConfig": {
+    "access": "public",
     "main": "./lib/index.js",
     "module": "./lib/index.module.js",
     "types": "./lib/index.d.ts",
@@ -29,8 +30,8 @@
     "lib"
   ],
   "dependencies": {
-    "@urlpack/base58": "*",
-    "@urlpack/msgpack": "*"
+    "@urlpack/base58": "^1.0.2",
+    "@urlpack/msgpack": "^1.0.0"
   },
   "devDependencies": {
     "esbuild-register": "^2.6.0",

@@ -1,6 +1,6 @@
 {
   "name": "@urlpack/base62",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "license": "MIT",
   "sideEffects": false,
   "source": "./src/index.ts",
@@ -21,7 +21,7 @@
   },
   "scripts": {
     "test": "uvu -r esbuild-register",
-    "test:watch": "yarn test || watchlist src tests -- yarn test",
+    "test:watch": "yarn test || true && watchlist src tests -- yarn test",
     "build": "microbundle",
     "dev": "microbundle watch",
     "prepack": "yarn build"
@@ -31,7 +31,7 @@
     "lib"
   ],
   "dependencies": {
-    "@urlpack/base-codec": "*"
+    "@urlpack/base-codec": "^1.0.1"
   },
   "devDependencies": {
     "@types/benchmark": "^2.1.1",
