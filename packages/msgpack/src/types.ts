@@ -1,3 +1,13 @@
-export type Input = null | undefined | number | boolean | string | Uint8Array | Array<Input> | {
-  [key: string]: Input,
-} | object;
+export type Input<ExtensionType extends object> = (
+  | null
+  | undefined
+  | number
+  | bigint
+  | boolean
+  | string
+  | Uint8Array
+  | Array<Input<ExtensionType>>
+  | { [key: string]: Input<ExtensionType> }
+  | Date
+  | ExtensionType
+);

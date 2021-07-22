@@ -1,6 +1,8 @@
 const { Benchmark } = require('benchmark');
 
-const urlpack = require('@urlpack/msgpack/lib');
+const { makeMessagePackDecoder } = require('@urlpack/msgpack/lib');
+const urlpack = makeMessagePackDecoder();
+
 const msgpack = require('@msgpack/msgpack');
 const msgpack5 = require('msgpack5')();
 const msgpackLite = require('msgpack-lite');

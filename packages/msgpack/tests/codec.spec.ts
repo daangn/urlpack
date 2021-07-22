@@ -2,9 +2,11 @@ import { test } from 'uvu';
 import * as assert from 'uvu/assert';
 
 import type { Input } from '../src/types';
-import { encode, decode } from '../src';
+import { makeMessagePackEncoder, makeMessagePackDecoder } from '../src';
 
-type Case = [data: Input, bin: ArrayBufferView];
+const { encode } = makeMessagePackEncoder();
+const { decode } = makeMessagePackDecoder();
+type Case = [data: Input<object>, bin: ArrayBufferView];
 
 const assertCase = ([data, bin]: Case) => {
   assert.equal(encode(data), new Uint8Array(bin.buffer));
@@ -82,13 +84,13 @@ test('negative int16', () => {
 test('negative int32', () => {
   assertCases([
     [-32769, new Uint8Array([0xd2, 0xff, 0xff, 0x7f, 0xff])],
-    [-214748364, new Uint8Array([0xd2, 0xf3, 0x33, 0x33, 0x34])],
+    [-2147483648, new Uint8Array([0xd2, 0x80, 0x00, 0x00, 0x00])],
   ]);
 });
 
 test('negative int64', () => {
   assertCases([
-    [-214748365, new Uint8Array([0xd3, 0xff, 0xff, 0xff, 0xff, 0xf3, 0x33, 0x33, 0x33])],
+    [-2147483649, new Uint8Array([0xd3, 0xff, 0xff, 0xff, 0xff, 0x7f, 0xff, 0xff, 0xff])],
     [-9007199254740991, new Uint8Array([0xd3, 0xff, 0xe0, 0x00, 0x00, 0x00, 0x00, 0x00, 0x01])],
   ]);
 });
