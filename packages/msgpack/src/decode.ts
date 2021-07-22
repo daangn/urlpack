@@ -64,7 +64,7 @@ const _decode = (input: Uint8Array, pos = 0): DecodeProcessResult => {
   } else if (header === 0xc0) {
     return [null, acc];
   } else if (header === 0xc1) {
-    return [null, acc];
+    throw new Error('header 0xc1 is never used');
   } else if (header === 0xc2) {
     return [false, acc];
   } else if (header === 0xc3) {
@@ -206,7 +206,12 @@ const _decode = (input: Uint8Array, pos = 0): DecodeProcessResult => {
     let [array, readBytes] = decodeArrayItems(input.slice(acc), len);
     return [array, acc + readBytes];
   } else if (header === 0xdd) {
-    return [null, acc];
+    let view = new DataView(input.buffer, acc);
+    let len = view.getUint32(0, false);
+    acc += 4;
+
+    let [array, readBytes] = decodeArrayItems(input.slice(acc), len);
+    return [array, acc + readBytes];
   } else if (header === 0xde) {
     let view = new DataView(input.buffer, acc);
     let len = view.getUint16(0, false);
