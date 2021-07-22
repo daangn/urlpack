@@ -1,0 +1,2 @@
+import{encode as e,decode as r}from"@urlpack/base58";import{makeMessagePackEncoder as n,makeMessagePackDecoder as o}from"@urlpack/msgpack";function c(r){void 0===r&&(r={});var o=r.encodeData||n().encode,c=r.encodeBinary||e;return{encode:function(e){return c(o(e))}}}function d(e){void 0===e&&(e={});var n=r,c=e.decodeBinary||o().decode;return{decode:function(e){return c(n(e))}}}export{d as makeDecoder,c as makeEncoder};
+//# sourceMappingURL=index.module.js.map
