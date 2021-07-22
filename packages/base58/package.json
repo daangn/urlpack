@@ -1,6 +1,7 @@
 {
   "name": "@urlpack/base58",
-  "version": "0.0.1",
+  "version": "1.0.0",
+  "license": "MIT",
   "sideEffects": false,
   "source": "./src/index.ts",
   "main": "./src/index.ts",
@@ -27,9 +28,7 @@
   },
   "files": [
     "src",
-    "lib",
-    "LICENSE",
-    "README.md"
+    "lib"
   ],
   "dependencies": {
     "@urlpack/base-codec": "*"
