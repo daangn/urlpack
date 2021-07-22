@@ -6,7 +6,6 @@
   "source": "./src/index.ts",
   "main": "./src/index.ts",
   "publishConfig": {
-    "access": "public",
     "main": "./lib/index.js",
     "module": "./lib/index.module.js",
     "types": "./lib/index.d.ts",
