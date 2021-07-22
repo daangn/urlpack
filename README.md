@@ -1,6 +1,6 @@
 # urlpack
 
-Pure JavaScript toolkit for data URL with data
+Pure JavaScript toolkit for data URLs
 
 - [json](packages/json): Compress JSON data into compact & URL-safe formats
 - [msgpack](packages/msgpack): Lightweight & Full-featured MessagePack implementation
