@@ -1,6 +1,7 @@
 {
   "name": "@urlpack/base58",
   "version": "0.0.1",
+  "sideEffects": false,
   "source": "./src/index.ts",
   "main": "./src/index.ts",
   "publishConfig": {
