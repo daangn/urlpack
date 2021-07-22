@@ -1,2 +1,0 @@
-var e=require("@urlpack/base58"),r=require("@urlpack/msgpack");exports.makeDecoder=function(c){void 0===c&&(c={});var n=e.decode,o=c.decodeBinary||r.makeMessagePackDecoder().decode;return{decode:function(e){return o(n(e))}}},exports.makeEncoder=function(c){void 0===c&&(c={});var n=c.encodeData||r.makeMessagePackEncoder().encode,o=c.encodeBinary||e.encode;return{encode:function(e){return o(n(e))}}};
-//# sourceMappingURL=index.js.map

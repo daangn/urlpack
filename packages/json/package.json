@@ -1,5 +1,5 @@
 {
-  "name": "urlpack",
+  "name": "@urlpack/json",
   "version": "1.0.0",
   "license": "MIT",
   "sideEffects": false,

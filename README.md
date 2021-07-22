@@ -2,7 +2,7 @@
 
 Pure JavaScript toolkit for data URL with data
 
-- [urlpack](packages/urlpack): Compress JSON data into compact & URL-safe formats
+- [json](packages/json): Compress JSON data into compact & URL-safe formats
 - [msgpack](packages/msgpack): Lightweight & Full-featured MessagePack implementation
 - [base-codec](packages/base-codec): Base-N codec generator
 - [base58](packages/base58): Base58 codec (Bitcoin flavored)

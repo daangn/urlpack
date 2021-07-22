@@ -1,12 +1,12 @@
 import { decode as decodeBase58 } from '@urlpack/base58';
 import { makeMessagePackDecoder } from '@urlpack/msgpack';
 
-type DecoderOptions<Data> = {
+type JsonDecoderOptions<Data> = {
   decodeString?: (str: string) => Uint8Array,
   decodeBinary?: (binary: Uint8Array) => Data,
 };
 
-export function makeDecoder<Data>(options: DecoderOptions<Data> = {}): {
+export function makeJsonDecoder<Data>(options: JsonDecoderOptions<Data> = {}): {
   decode: (str: string) => Data,
 } {
   const decodeString = decodeBase58;

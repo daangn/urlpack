@@ -1,7 +1,7 @@
 import { test } from 'uvu';
 import * as assert from 'uvu/assert';
 
-import { makeEncoder, makeDecoder } from '../src';
+import { makeJsonEncoder, makeJsonDecoder } from '../src';
 
 test('urlpack', () => {
   const data = {
@@ -13,8 +13,8 @@ test('urlpack', () => {
     },
   };
 
-  const { encode } = makeEncoder<typeof data>();
-  const { decode } = makeDecoder<typeof data>();
+  const { encode } = makeJsonEncoder<typeof data>();
+  const { decode } = makeJsonDecoder<typeof data>();
 
   const stored = encode(data);
   console.log(stored);

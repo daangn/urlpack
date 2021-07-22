@@ -1,4 +1,4 @@
-# urlpack
+# @urlpack/json
 
 [![Package Version](https://img.shields.io/npm/v/urlpack)](https://npm.im/urlpack)
 [![License](https://img.shields.io/npm/l/urlpack)](#License)
@@ -14,9 +14,9 @@ Compress JSON data into compact & URL-safe formats
 ## Usage
 
 ```ts
-const { makeEncoder } from 'urlpack';
+const { makeJsonEncoder } from '@urlpack/json';
 
-const encoder = makeEncoder();
+const encoder = makeJsonEncoder();
 
 encoder.encode({
   href: 'http://daangn.com',
