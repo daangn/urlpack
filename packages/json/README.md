@@ -1,6 +1,6 @@
 # @urlpack/json
 
-[![Package Version](https://img.shields.io/npm/v/urlpack)](https://npm.im/@urlpack/json)
+[![Package Version](https://img.shields.io/npm/v/@urlpack/json)](https://npm.im/@urlpack/json)
 [![License](https://img.shields.io/npm/l/@urlpack/json)](#License)
 [![Bundle Size](https://img.shields.io/bundlephobia/minzip/@urlpack/json)](https://bundlephobia.com/package/@urlpack/json)
 
