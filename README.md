@@ -1,10 +1,13 @@
 # urlpack
 
-Compress JSON data into compact & URL-safe formats
+Pure JavaScript toolkit for data URL with data
 
-## Features
+- [urlpack](packages/urlpack): Compress JSON data into compact & URL-safe formats
+- [msgpack](packages/msgpack): Lightweight & Full-featured MessagePack implementation
+- [base-codec](packages/base-codec): Base-N codec generator
+- [base58](packages/base58): Base58 codec (Bitcoin flavored)
+- [base62](packages/base62): Base62 codec
 
-- Browser & ES Module first
-- Compact output using [MessagePack](https://msgpack.org/)
-- Multiple URL safe formats (Binary, Base64URL, Base62, Base58)
-- Composable & Tree-shakable
+## LICENSE
+
+MIT
