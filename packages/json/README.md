@@ -14,7 +14,7 @@ Compress JSON data into compact & URL-safe formats
 ## Usage
 
 ```ts
-const { makeJsonEncoder } from '@urlpack/json';
+import { makeJsonEncoder } from '@urlpack/json';
 
 const encoder = makeJsonEncoder();
 
