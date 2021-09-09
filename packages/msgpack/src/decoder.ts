@@ -233,19 +233,19 @@ export function makeMessagePackDecoder<ExtensionType extends object = object>({
       throw new Error(`unknown extension type ${type}`);
     } else if (header === 0xd9) {
       let len = input[acc++];
-      let data = textDecoder.decode(input.slice(acc));
+      let data = textDecoder.decode(input.slice(acc, acc + len));
       return [data, acc + len];
     } else if (header === 0xda) {
       let view = new DataView(input.buffer, acc);
       let len = view.getUint16(0, false);
       acc += 2;
-      let data = textDecoder.decode(input.slice(acc));
+      let data = textDecoder.decode(input.slice(acc, acc + len));
       return [data, acc + len];
     } else if (header === 0xdb) {
       let view = new DataView(input.buffer, acc);
       let len = view.getUint32(0, false);
       acc += 4;
-      let data = textDecoder.decode(input.slice(acc));
+      let data = textDecoder.decode(input.slice(acc, acc + len));
       return [data, acc + len];
     } else if (header === 0xdc) {
       let view = new DataView(input.buffer, acc);
