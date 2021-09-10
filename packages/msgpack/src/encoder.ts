@@ -85,7 +85,7 @@ export function makeMessagePackEncoder<ExtensionType extends object = object>({
   };
 
   const encodeBigInt = (input: bigint) => {
-    if (input === 0n) {
+    if (input === BigInt(0)) {
       // zero is zero
       return new Uint8Array([0]);
 
