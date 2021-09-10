@@ -1839,7 +1839,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@urlpack/base-codec@^1.0.1, @urlpack/base-codec@workspace:packages/base-codec":
+"@urlpack/base-codec@workspace:^1.0.1, @urlpack/base-codec@workspace:packages/base-codec":
   version: 0.0.0-use.local
   resolution: "@urlpack/base-codec@workspace:packages/base-codec"
   dependencies:
@@ -1848,11 +1848,11 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@urlpack/base58@*, @urlpack/base58@^1.0.2, @urlpack/base58@workspace:packages/base58":
+"@urlpack/base58@*, @urlpack/base58@workspace:^1.0.2, @urlpack/base58@workspace:packages/base58":
   version: 0.0.0-use.local
   resolution: "@urlpack/base58@workspace:packages/base58"
   dependencies:
-    "@urlpack/base-codec": ^1.0.1
+    "@urlpack/base-codec": "workspace:^1.0.1"
     esbuild-register: ^2.6.0
     microbundle: ^0.13.3
     typescript: ^4.3.5
@@ -1866,7 +1866,7 @@ __metadata:
   resolution: "@urlpack/base62@workspace:packages/base62"
   dependencies:
     "@types/benchmark": ^2.1.1
-    "@urlpack/base-codec": ^1.0.1
+    "@urlpack/base-codec": "workspace:^1.0.1"
     benchmark: ^2.1.4
     esbuild-register: ^2.6.0
     microbundle: ^0.13.3
@@ -1880,8 +1880,8 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@urlpack/json@workspace:packages/json"
   dependencies:
-    "@urlpack/base58": ^1.0.2
-    "@urlpack/msgpack": ^1.0.0
+    "@urlpack/base58": "workspace:^1.0.2"
+    "@urlpack/msgpack": "workspace:^1.0.0"
     esbuild-register: ^2.6.0
     microbundle: ^0.13.3
     typescript: ^4.3.5
@@ -1890,7 +1890,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@urlpack/msgpack@*, @urlpack/msgpack@^1.0.0, @urlpack/msgpack@workspace:packages/msgpack":
+"@urlpack/msgpack@*, @urlpack/msgpack@workspace:^1.0.0, @urlpack/msgpack@workspace:packages/msgpack":
   version: 0.0.0-use.local
   resolution: "@urlpack/msgpack@workspace:packages/msgpack"
   dependencies:

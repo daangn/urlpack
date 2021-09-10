@@ -36,8 +36,8 @@
     "lib"
   ],
   "dependencies": {
-    "@urlpack/base58": "^1.0.2",
-    "@urlpack/msgpack": "^1.0.0"
+    "@urlpack/base58": "workspace:^1.0.2",
+    "@urlpack/msgpack": "workspace:^1.0.0"
   },
   "devDependencies": {
     "esbuild-register": "^2.6.0",
