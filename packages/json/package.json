@@ -1,6 +1,6 @@
 {
   "name": "@urlpack/json",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "license": "MIT",
   "sideEffects": false,
   "homepage": "https://github.com/daangn/urlpack/tree/main/packages/json",
@@ -36,7 +36,7 @@
     "lib"
   ],
   "dependencies": {
-    "@urlpack/base58": "workspace:^1.0.2",
+    "@urlpack/base58": "workspace:^1.0.4",
     "@urlpack/msgpack": "workspace:^1.0.0"
   },
   "devDependencies": {
