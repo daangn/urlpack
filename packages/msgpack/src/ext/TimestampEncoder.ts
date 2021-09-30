@@ -3,6 +3,8 @@ import type { EncoderExtension } from './types';
 let uint64bound = 0x100000000;
 
 export const timestampEncoder: EncoderExtension<Date> = {
+  type: -1,
+
   check(input): input is Date {
     return input instanceof Date;
   },

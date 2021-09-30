@@ -10,7 +10,7 @@ export const timestampDecoder: DecoderExtension<Date> = {
       case 4: {
         let seconds = view.getUint32(0, false);
         let millis = seconds / 1000 | 0;
-        return [new Date(millis), 4];
+        return new Date(millis);
       }
       case 8: {
         let upper = view.getUint32(0);
@@ -18,7 +18,7 @@ export const timestampDecoder: DecoderExtension<Date> = {
         let nanos = upper / 4;
         let seconds = ((upper & 3) * (2 ** 32)) + lower;
         let millis = seconds * 1000 + Math.round(nanos / 1e6);
-        return [new Date(millis), 8];
+        return new Date(millis);
       }
       case 12:
         throw new Error(`timestamp96 is not supported yet`);

@@ -76,14 +76,12 @@ If you are dealing with large data or want very high-performance, We recommend u
 
 ## Benchmark
 
-Run on MacBook Pro 16 (2.6 GHz 6-Core Intel Core i7), macOS Big Sur v11.4 and Node.js v14.17.0 (v8 8.4.371.23)
+Run on Desktop (Intel i5-9600K (6) @ 4.600GHz), Ubuntu 20.04.3 LTS x86_64 and Node.js v16.10.0 (v8 9.3.345.19)
 
 vs.
 - [@msgpack/msgpack](https://github.com/msgpack/msgpack-javascript)
 - [msgpack5](https://github.com/mcollina/msgpack5)
 - [msgpack-lite](https://github.com/kawanet/msgpack-lite)
-
-It is slow for large arrays, maps, and complex structures. And it is very bed at decoding yet.
 
 These are very common use cases and should be further optimized.
 
@@ -158,64 +156,64 @@ complex 2 - msgpack-lite     x 136,370 ops/sec ±1.53% (86 runs sampled)
 ### decoding
 
 ```txt
-misc - @urlpack/msgpack x 2,455,984 ops/sec ±0.97% (94 runs sampled)
-misc - @msgpack/msgpack x   304,603 ops/sec ±2.87% (79 runs sampled)
-misc - msgpack5         x   214,451 ops/sec ±1.57% (85 runs sampled)
-misc - msgpack-lite     x 2,375,852 ops/sec ±2.13% (87 runs sampled)
+misc - @urlpack/msgpack x   440,313 ops/sec ±0.47% (94 runs sampled)
+misc - @msgpack/msgpack x   438,023 ops/sec ±0.70% (92 runs sampled)
+misc - msgpack5         x   285,035 ops/sec ±0.36% (95 runs sampled)
+misc - msgpack-lite     x 2,750,585 ops/sec ±0.36% (96 runs sampled)
 
-positive int - @urlpack/msgpack x   359,746 ops/sec ±1.88% (86 runs sampled)
-positive int - @msgpack/msgpack x   237,743 ops/sec ±3.76% (76 runs sampled)
-positive int - msgpack5         x   115,580 ops/sec ±1.18% (86 runs sampled)
-positive int - msgpack-lite     x 1,614,425 ops/sec ±0.71% (96 runs sampled)
+positive int - @urlpack/msgpack x   367,432 ops/sec ±1.49% (88 runs sampled)
+positive int - @msgpack/msgpack x   324,577 ops/sec ±1.00% (88 runs sampled)
+positive int - msgpack5         x   135,978 ops/sec ±0.71% (95 runs sampled)
+positive int - msgpack-lite     x 1,676,802 ops/sec ±0.44% (96 runs sampled)
 
-negative int - @urlpack/msgpack x   340,592 ops/sec ±2.87% (84 runs sampled)
-negative int - @msgpack/msgpack x   246,673 ops/sec ±2.55% (81 runs sampled)
-negative int - msgpack5         x   138,023 ops/sec ±1.50% (89 runs sampled)
-negative int - msgpack-lite     x 1,569,078 ops/sec ±1.45% (88 runs sampled)
+negative int - @urlpack/msgpack x   354,989 ops/sec ±0.86% (85 runs sampled)
+negative int - @msgpack/msgpack x   322,527 ops/sec ±0.89% (86 runs sampled)
+negative int - msgpack5         x   173,402 ops/sec ±0.45% (97 runs sampled)
+negative int - msgpack-lite     x 1,742,117 ops/sec ±0.18% (97 runs sampled)
 
-float - @urlpack/msgpack x   430,572 ops/sec ±3.86% (76 runs sampled)
-float - @msgpack/msgpack x   400,951 ops/sec ±3.10% (80 runs sampled)
-float - msgpack5         x   215,972 ops/sec ±1.49% (88 runs sampled)
-float - msgpack-lite     x 1,635,116 ops/sec ±0.78% (88 runs sampled)
+float - @urlpack/msgpack x   560,581 ops/sec ±0.89% (89 runs sampled)
+float - @msgpack/msgpack x   536,420 ops/sec ±0.98% (90 runs sampled)
+float - msgpack5         x   263,946 ops/sec ±0.42% (97 runs sampled)
+float - msgpack-lite     x 1,673,797 ops/sec ±0.14% (98 runs sampled)
 
-str - @urlpack/msgpack x 111,567 ops/sec ±2.10% (76 runs sampled)
-str - @msgpack/msgpack x 154,093 ops/sec ±3.34% (71 runs sampled)
-str - msgpack5         x 154,117 ops/sec ±2.29% (78 runs sampled)
-str - msgpack-lite     x 241,490 ops/sec ±1.54% (79 runs sampled)
+str - @urlpack/msgpack x 261,537 ops/sec ±0.58% (93 runs sampled)
+str - @msgpack/msgpack x 250,727 ops/sec ±1.16% (84 runs sampled)
+str - msgpack5         x 274,618 ops/sec ±0.50% (96 runs sampled)
+str - msgpack-lite     x 318,989 ops/sec ±0.42% (96 runs sampled)
 
-bin - @urlpack/msgpack x 226,284 ops/sec ±2.27% (83 runs sampled)
-bin - @msgpack/msgpack x 273,575 ops/sec ±2.12% (90 runs sampled)
-bin - msgpack5         x 229,914 ops/sec ±1.43% (94 runs sampled)
-bin - msgpack-lite     x 241,549 ops/sec ±0.72% (89 runs sampled)
+bin - @urlpack/msgpack x 249,947 ops/sec ±0.56% (94 runs sampled)
+bin - @msgpack/msgpack x 296,036 ops/sec ±0.35% (99 runs sampled)
+bin - msgpack5         x 254,581 ops/sec ±0.49% (91 runs sampled)
+bin - msgpack-lite     x 261,996 ops/sec ±0.32% (94 runs sampled)
 
-fixarray - @urlpack/msgpack x 1,717,264 ops/sec ±1.42% (89 runs sampled)
-fixarray - @msgpack/msgpack x   943,892 ops/sec ±2.93% (78 runs sampled)
-fixarray - msgpack5         x   546,138 ops/sec ±1.41% (89 runs sampled)
-fixarray - msgpack-lite     x 4,832,138 ops/sec ±1.98% (90 runs sampled)
+fixarray - @urlpack/msgpack x 1,419,697 ops/sec ±0.38% (93 runs sampled)
+fixarray - @msgpack/msgpack x 1,345,461 ops/sec ±0.81% (88 runs sampled)
+fixarray - msgpack5         x   654,856 ops/sec ±0.26% (95 runs sampled)
+fixarray - msgpack-lite     x 5,982,184 ops/sec ±0.34% (95 runs sampled)
 
-array 8 - @urlpack/msgpack x  7,457 ops/sec ±2.77% (82 runs sampled)
-array 8 - @msgpack/msgpack x 82,472 ops/sec ±1.27% (93 runs sampled)
-array 8 - msgpack5         x 25,852 ops/sec ±2.35% (90 runs sampled)
-array 8 - msgpack-lite     x 76,595 ops/sec ±0.62% (85 runs sampled)
+array 8 - @urlpack/msgpack x 62,351 ops/sec ±0.22% (97 runs sampled)
+array 8 - @msgpack/msgpack x 87,723 ops/sec ±0.42% (94 runs sampled)
+array 8 - msgpack5         x 28,932 ops/sec ±0.54% (97 runs sampled)
+array 8 - msgpack-lite     x 84,527 ops/sec ±0.47% (94 runs sampled)
 
-fixmap - @urlpack/msgpack x  74,343 ops/sec ±3.63% (73 runs sampled)
-fixmap - @msgpack/msgpack x 682,766 ops/sec ±1.81% (83 runs sampled)
-fixmap - msgpack5         x 170,771 ops/sec ±2.10% (84 runs sampled)
-fixmap - msgpack-lite     x 679,037 ops/sec ±1.41% (90 runs sampled)
+fixmap - @urlpack/msgpack x 738,537 ops/sec ±0.28% (94 runs sampled)
+fixmap - @msgpack/msgpack x 922,908 ops/sec ±0.71% (94 runs sampled)
+fixmap - msgpack5         x 253,995 ops/sec ±0.46% (94 runs sampled)
+fixmap - msgpack-lite     x 746,095 ops/sec ±0.19% (91 runs sampled)
 ```
 
 ### decoding (complex)
 
 ```txt
-complex 1 - @urlpack/msgpack x    69,076 ops/sec ±0.95% (90 runs sampled)
-complex 1 - @msgpack/msgpack x 1,299,590 ops/sec ±0.49% (95 runs sampled)
-complex 1 - msgpack5         x   250,499 ops/sec ±2.28% (84 runs sampled)
-complex 1 - msgpack-lite     x   550,986 ops/sec ±2.66% (86 runs sampled)
+complex 1 - @urlpack/msgpack x   718,817 ops/sec ±0.76% (93 runs sampled)
+complex 1 - @msgpack/msgpack x 1,502,565 ops/sec ±0.29% (90 runs sampled)
+complex 1 - msgpack5         x   301,826 ops/sec ±0.22% (98 runs sampled)
+complex 1 - msgpack-lite     x   668,763 ops/sec ±0.33% (93 runs sampled)
 
-complex 2 - @urlpack/msgpack x  25,727 ops/sec ±2.65% (85 runs sampled)
-complex 2 - @msgpack/msgpack x 544,204 ops/sec ±2.88% (85 runs sampled)
-complex 2 - msgpack5         x 102,003 ops/sec ±2.35% (77 runs sampled)
-complex 2 - msgpack-lite     x 172,922 ops/sec ±1.78% (86 runs sampled)
+complex 2 - @urlpack/msgpack x 295,942 ops/sec ±0.32% (96 runs sampled)
+complex 2 - @msgpack/msgpack x 715,786 ops/sec ±0.19% (96 runs sampled)
+complex 2 - msgpack5         x 122,310 ops/sec ±0.37% (94 runs sampled)
+complex 2 - msgpack-lite     x 208,953 ops/sec ±0.25% (98 runs sampled)
 ```
 
 ## License
