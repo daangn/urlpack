@@ -6,5 +6,5 @@ export interface EncoderExtension<T extends object> {
 
 export interface DecoderExtension<T extends object> {
   type: number;
-  decode(dataArray: Uint8Array, byteLength: number): T;
+  decode(dataArray: Uint8Array, length: number): T;
 }
