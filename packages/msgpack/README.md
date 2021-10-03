@@ -36,7 +36,7 @@ const myEncoderExtension: EncoderExtension<MyObject> = {
 
   check(input): input is MyObject {
     // validate input object is my extension type
-  }
+  },
 
   encode(input) {/* encode input object to binary */}
 };
