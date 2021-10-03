@@ -32,6 +32,8 @@ encoder:
 import type { EncoderExtension } from '@urlpack/msgpack';
 
 const myEncoderExtension: EncoderExtension<MyObject> = {
+  type: 1, // 0 ~ 127
+
   check(input): input is MyObject {
     // validate input object is my extension type
   }
@@ -55,10 +57,7 @@ const myDecoderExtension: DecoderExtension<MyObject> = {
    * - binary is Uint8Array that start from data part
    * - byteLength notice how many bytes you have to read
    */
-  decode(binary, byteLength) {
-    // It should return a tuple of the decoded MyObject and the number of bytes actually read.
-    return [data as MyObject, readBytes];
-  },
+  decode(binary, length) { /* should returns decoded MyObject */ },
 };
 
 const decoderExt = makeMessagePackDecoder({
