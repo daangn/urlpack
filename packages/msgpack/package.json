@@ -3,7 +3,6 @@
   "version": "1.0.3",
   "license": "MIT",
   "sideEffects": false,
-  "type": "module",
   "homepage": "https://github.com/daangn/urlpack/tree/main/packages/msgpack",
   "repository": {
     "type": "git",
@@ -14,6 +13,7 @@
   "main": "./src/index.ts",
   "publishConfig": {
     "access": "public",
+    "type": "module",
     "main": "./lib/index.mjs",
     "module": "./lib/index.mjs",
     "types": "./lib/index.d.ts",
