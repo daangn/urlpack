@@ -6,7 +6,7 @@
 
 Pure JavaScript implementation of the [MessagePack](https://msgpack.org/) codec. (See [specification](https://github.com/msgpack/msgpack/blob/master/spec.md))
 
-- Lightweight (only ~2.6KB min-gzipped)
+- Lightweight (only ~3KB min-gzipped)
 - Zero dependencies (No Node.js dependencies)
 - ES Modules & Web compatible
 - Tree-shakable, DCE-friendly both encoder and decoder
