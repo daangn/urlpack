@@ -3,6 +3,7 @@
   "version": "1.0.3",
   "license": "MIT",
   "sideEffects": false,
+  "type": "module",
   "homepage": "https://github.com/daangn/urlpack/tree/main/packages/msgpack",
   "repository": {
     "type": "git",
@@ -13,23 +14,19 @@
   "main": "./src/index.ts",
   "publishConfig": {
     "access": "public",
-    "main": "./lib/index.js",
-    "module": "./lib/index.module.js",
+    "main": "./lib/index.mjs",
+    "module": "./lib/index.mjs",
     "types": "./lib/index.d.ts",
     "exports": {
-      ".": {
-        "require": "./lib/index.js",
-        "import": "./lib/index.module.js"
-      },
-      "./package.json": "./package.json"
+      "require": "./lib/index.cjs",
+      "import": "./lib/index.mjs"
     }
   },
   "scripts": {
     "test": "uvu -r esbuild-register",
     "test:watch": "yarn test || true && watchlist src tests -- yarn test",
     "build": "concurrently \"yarn:build:*\"",
-    "build:cjs": "esbuild src/index.ts --bundle --sourcemap --minify --format=cjs --platform=node --target=node12 --outfile=lib/index.js",
-    "build:esm": "esbuild src/index.ts --bundle --sourcemap --minify --format=esm --outfile=lib/index.module.js",
+    "build:bundle": "nanobundle build --standalone",
     "build:dts": "tsc --emitDeclarationOnly",
     "_build": "microbundle --format esm,cjs",
     "_dev": "microbundle watch",
@@ -40,15 +37,14 @@
     "lib"
   ],
   "devDependencies": {
+    "@rescript/std": "^9.1.3",
     "concurrently": "^6.2.0",
     "esbuild": "^0.12.15",
     "esbuild-register": "^2.6.0",
     "microbundle": "^0.13.3",
+    "nanobundle": "^0.0.18",
     "typescript": "^4.3.5",
     "uvu": "^0.5.1",
     "watchlist": "^0.2.3"
-  },
-  "dependencies": {
-    "@rescript/std": "^9.1.3"
   }
 }
