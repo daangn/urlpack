@@ -8,13 +8,13 @@ module TextDecoder = {
   @send external decode: (t, Uint8Array.t) => string = "decode"
 
   /**
-   * Borrowing from https://github.com/msgpack/msgpack-javascript/blob/c58b7e2/src/utils/utf8.ts#L48-L89
+   * Borrowing from https://github.com/msgpack/msgpack-javascript/blob/c58b7e2/src/utils/utf8.ts#L110-L157
    *
    * Note:
    *   The Node.js builtin TextDecoder is seriously slow.
    *   This custom decoder is 10~12x faster than the builtin
    *
-   * See benchmarks/utf8-decode.js
+   * See benchmarks/utf8-decode.cjs
    */
   let decode2: (t, Uint8Array.t) => string = %raw(`(_t, bytes) => {
     let offset = 0;
