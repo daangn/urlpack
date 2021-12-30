@@ -2,7 +2,6 @@
   "name": "@urlpack/base-codec",
   "version": "1.0.2",
   "license": "MIT",
-  "sideEffects": false,
   "homepage": "https://github.com/daangn/urlpack/tree/main/packages/base-codec",
   "repository": {
     "type": "git",
@@ -10,31 +9,32 @@
     "directory": "packages/base-codec"
   },
   "source": "./src/index.ts",
+  "type": "module",
+  "sideEffects": false,
   "main": "./src/index.ts",
+  "module": "./lib/index.mjs",
+  "types": "./lib/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./lib/index.mjs",
+      "require": "./lib/index.cjs"
+    },
+    "./package.json": "./package.json"
+  },
   "publishConfig": {
     "access": "public",
-    "main": "./lib/index.js",
-    "module": "./lib/index.module.js",
-    "unpkg": "./lib/index.umd.js",
-    "types": "./lib/index.d.ts",
-    "exports": {
-      ".": {
-        "require": "./lib/index.js",
-        "import": "./lib/index.module.js"
-      },
-      "./package.json": "./package.json"
-    }
-  },
-  "scripts": {
-    "build": "microbundle",
-    "prepack": "yarn build"
+    "main": "./lib/index.mjs"
   },
   "files": [
     "src",
     "lib"
   ],
+  "scripts": {
+    "prepack": "yarn build",
+    "build": "nanobundle build --standalone"
+  },
   "devDependencies": {
-    "microbundle": "^0.14.2",
+    "nanobundle": "^0.0.21",
     "typescript": "^4.5.4"
   }
 }
