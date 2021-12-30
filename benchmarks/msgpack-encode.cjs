@@ -6,6 +6,7 @@ const urlpack = makeMessagePackEncoder();
 const msgpack = require('@msgpack/msgpack');
 const msgpack5 = require('msgpack5')();
 const msgpackLite = require('msgpack-lite');
+const msgpackr = require('msgpackr');
 
 new Benchmark.Suite()
 .add('encode misc - @urlpack/msgpack', () => {
@@ -31,6 +32,12 @@ new Benchmark.Suite()
   msgpackLite.encode(null);
   msgpackLite.encode(true);
   msgpackLite.encode(false);
+})
+.add('encode misc - msgpackr', () => {
+  msgpackr.encode(0);
+  msgpackr.encode(null);
+  msgpackr.encode(true);
+  msgpackr.encode(false);
 })
 .add('encode positive int - @urlpack/msgpack', () => {
   urlpack.encode(1);
@@ -60,6 +67,13 @@ new Benchmark.Suite()
   msgpackLite.encode(4294967296);
   msgpackLite.encode(9007199254740991);
 })
+.add('encode positive int - msgpackr', () => {
+  msgpackr.encode(1);
+  msgpackr.encode(256);
+  msgpackr.encode(65536);
+  msgpackr.encode(4294967296);
+  msgpackr.encode(9007199254740991);
+})
 .add('encode negative int - @urlpack/msgpack', () => {
   urlpack.encode(-1);
   urlpack.encode(-256);
@@ -88,6 +102,13 @@ new Benchmark.Suite()
   msgpackLite.encode(-4294967296);
   msgpackLite.encode(-9007199254740991);
 })
+.add('encode negative int - msgpackr', () => {
+  msgpackr.encode(-1);
+  msgpackr.encode(-256);
+  msgpackr.encode(-65536);
+  msgpackr.encode(-4294967296);
+  msgpackr.encode(-9007199254740991);
+})
 .add('encode float - @urlpack/msgpack', () => {
   urlpack.encode(0.5);
   urlpack.encode(1.2);
@@ -108,6 +129,11 @@ new Benchmark.Suite()
   msgpackLite.encode(1.2);
   msgpackLite.encode(1.337);
 })
+.add('encode float - msgpackr', () => {
+  msgpackr.encode(0.5);
+  msgpackr.encode(1.2);
+  msgpackr.encode(1.337);
+})
 .add('encode str - @urlpack/msgpack', () => {
   urlpack.encode('Hello World!');
   urlpack.encode('Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris molestie, sem sed rutrum euismod, leo tellus mattis velit, nec consequat lacus mi quis arcu. Etiam eget urna sem. Sed nulla ex, maximus eget ornare sit amet, tristique at diam. Etiam viverra feugiat turpis, ac varius dui mollis ut.');
@@ -123,6 +149,10 @@ new Benchmark.Suite()
 .add('encode str - msgpack-lite', () => {
   msgpackLite.encode('Hello World!');
   msgpackLite.encode('Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris molestie, sem sed rutrum euismod, leo tellus mattis velit, nec consequat lacus mi quis arcu. Etiam eget urna sem. Sed nulla ex, maximus eget ornare sit amet, tristique at diam. Etiam viverra feugiat turpis, ac varius dui mollis ut.');
+})
+.add('encode str - msgpackr', () => {
+  msgpackr.encode('Hello World!');
+  msgpackr.encode('Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris molestie, sem sed rutrum euismod, leo tellus mattis velit, nec consequat lacus mi quis arcu. Etiam eget urna sem. Sed nulla ex, maximus eget ornare sit amet, tristique at diam. Etiam viverra feugiat turpis, ac varius dui mollis ut.');
 })
 .add('encode bin - @urlpack/msgpack', () => {
   const bin8 = new Uint8Array(Array(2**8 - 1).fill(0).map((_, idx) => idx % 256));
@@ -140,6 +170,10 @@ new Benchmark.Suite()
   const bin8 = new Uint8Array(Array(2**8 - 1).fill(0).map((_, idx) => idx % 256));
   msgpackLite.encode(bin8);
 })
+.add('encode bin - msgpackr', () => {
+  const bin8 = new Uint8Array(Array(2**8 - 1).fill(0).map((_, idx) => idx % 256));
+  msgpackr.encode(bin8);
+})
 .add('encode fixarray - @urlpack/msgpack', () => {
   urlpack.encode([null, null, null, null, null]);
 })
@@ -151,6 +185,9 @@ new Benchmark.Suite()
 })
 .add('encode fixarray - msgpack-lite', () => {
   msgpackLite.encode([null, null, null, null, null]);
+})
+.add('encode fixarray - msgpackr', () => {
+  msgpackr.encode([null, null, null, null, null]);
 })
 .add('encode array 8 - @urlpack/msgpack', () => {
   const arr = Array(2**8 - 1).fill(null);
@@ -168,6 +205,10 @@ new Benchmark.Suite()
   const arr = Array(2**8 - 1).fill(null);
   msgpackLite.encode(arr);
 })
+.add('encode array 8 - msgpackr', () => {
+  const arr = Array(2**8 - 1).fill(null);
+  msgpackr.encode(arr);
+})
 .add('encode array 16 - @urlpack/msgpack', () => {
   const arr = Array(2**16 - 1).fill(null);
   urlpack.encode(arr);
@@ -184,6 +225,10 @@ new Benchmark.Suite()
   const arr = Array(2**16 - 1).fill(null);
   msgpackLite.encode(arr);
 })
+.add('encode array 16 - msgpackr', () => {
+  const arr = Array(2**16 - 1).fill(null);
+  msgpackr.encode(arr);
+})
 .add('encode fixmap - @urlpack/msgpack', () => {
   urlpack.encode({ a: null, b: null, c: null, d: null, e: null });
 })
@@ -195,6 +240,9 @@ new Benchmark.Suite()
 })
 .add('encode fixmap - msgpack-lite', () => {
   msgpackLite.encode({ a: null, b: null, c: null, d: null, e: null });
+})
+.add('encode fixmap - msgpackr', () => {
+  msgpackr.encode({ a: null, b: null, c: null, d: null, e: null });
 })
 .on('cycle', event => {
   console.log(event.target.toString());
