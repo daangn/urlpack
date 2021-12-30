@@ -42,10 +42,10 @@
   "devDependencies": {
     "@types/benchmark": "^2.1.1",
     "benchmark": "^2.1.4",
-    "esbuild-register": "^2.6.0",
-    "microbundle": "^0.13.3",
-    "typescript": "^4.3.5",
-    "uvu": "^0.5.1",
-    "watchlist": "^0.2.3"
+    "esbuild-register": "^3.3.1",
+    "microbundle": "^0.14.2",
+    "typescript": "^4.5.4",
+    "uvu": "^0.5.2",
+    "watchlist": "^0.3.1"
   }
 }
