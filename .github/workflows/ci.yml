@@ -23,9 +23,9 @@ jobs:
         run: |
           yarn --immutable
 
-      - name: Check for type errors
+      - name: Build and validate packages
         run: |
-          yarn typecheck
+          yarn workspaces foreach -t run build
 
       - name: Run all tests
         run: |
