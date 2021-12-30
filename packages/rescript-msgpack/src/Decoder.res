@@ -82,7 +82,8 @@ type t = {
 
 let make = (~extensions) => {
   let textDecoder = TextDecoder.make()
-  let extensions = extensions
+  let extensions =
+    extensions
     ->Js.Array2.map((ext: module(DecoderExtension)) => {
       let module(DecoderExtension) = ext
       (DecoderExtension.\"type"->Belt.Int.toString, ext)
