@@ -345,13 +345,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@rescript/std@npm:^9.1.3":
-  version: 9.1.3
-  resolution: "@rescript/std@npm:9.1.3"
-  checksum: 100055c97210c4dcdef7606807f7d5f4e305f0ec6d2da74111d9993653d43fc5322318fec9a57be668f9770c42af139bf6347f870d95daa3a46cdf37b34aae8d
-  languageName: node
-  linkType: hard
-
 "@tootallnate/once@npm:1":
   version: 1.1.2
   resolution: "@tootallnate/once@npm:1.1.2"
@@ -458,10 +451,11 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@urlpack/msgpack@workspace:packages/msgpack"
   dependencies:
-    "@rescript/std": ^9.1.3
     concurrently: ^6.5.1
     esbuild: ^0.14.9
     nanobundle: ^0.0.21
+    rescript: ^9.1.4
+    rescript-msgpack: "workspace:^0.1.0"
     tsm: ^2.2.1
     typescript: ^4.5.4
     uvu: ^0.5.2
@@ -2820,6 +2814,28 @@ __metadata:
   version: 2.0.0
   resolution: "require-main-filename@npm:2.0.0"
   checksum: e9e294695fea08b076457e9ddff854e81bffbe248ed34c1eec348b7abbd22a0d02e8d75506559e2265e96978f3c4720bd77a6dad84755de8162b357eb6c778c7
+  languageName: node
+  linkType: hard
+
+"rescript-msgpack@workspace:^0.1.0, rescript-msgpack@workspace:packages/rescript-msgpack":
+  version: 0.0.0-use.local
+  resolution: "rescript-msgpack@workspace:packages/rescript-msgpack"
+  dependencies:
+    rescript: ^9.1.4
+  peerDependencies:
+    rescript: ^9.0.0
+  languageName: unknown
+  linkType: soft
+
+"rescript@npm:^9.1.4":
+  version: 9.1.4
+  resolution: "rescript@npm:9.1.4"
+  bin:
+    bsc: bsc
+    bsrefmt: bsrefmt
+    bstracing: lib/bstracing
+    rescript: rescript
+  checksum: 3c503580f968b4d4409830093c57f85b5590f7372250345427b3a7c1f5ccb08009e1edd89b4a3dcbb3ee95ee4dcad9c337ece4d1f8fdaa10e22ed04b8a7495c0
   languageName: node
   linkType: hard
 
