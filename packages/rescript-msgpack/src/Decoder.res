@@ -286,5 +286,5 @@ let decode = (t, binary) => {
     )
   }
 
-  result->Result.toJSON
+  result->Result.emit
 }

@@ -1,9 +1,9 @@
 module type EncoderExtension = {
   let \"type": int
 
-  let check: Js.Json.t => bool
+  let check: {..} => bool
 
-  let encode: Js.Json.t => Js.TypedArray2.Uint8Array.t
+  let encode: {..} => Js.TypedArray2.Uint8Array.t
 }
 
 module type DecoderExtension = {

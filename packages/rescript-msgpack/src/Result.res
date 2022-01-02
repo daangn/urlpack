@@ -6,4 +6,4 @@ external make: 'a => t = "%identity"
 
 external toString: t => string = "%identity"
 
-external toJSON: t => Js.Json.t = "%identity"
+external emit: t => {..} = "%identity"
