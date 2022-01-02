@@ -5,7 +5,7 @@ type t = {
   extensions: Js.Dict.t<module(EncoderExtension)>,
 }
 
-let make = (~extensions) => {
+let make = (~extensions=[], ()) => {
   let textEncoder = TextEncoder.make()
   let extensions =
     extensions

@@ -6,7 +6,7 @@ type t = {
   extensions: Js.Dict.t<module(DecoderExtension)>,
 }
 
-let make = (~extensions) => {
+let make = (~extensions=[], ()) => {
   let textDecoder = TextDecoder.make()
   let extensions =
     extensions
