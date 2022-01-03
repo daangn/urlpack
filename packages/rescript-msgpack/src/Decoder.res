@@ -33,11 +33,11 @@ let flip64: Uint8Array.t => unit = %raw(`binary => {
 type state =
   | ExpectHeader
   | DecodeString(int)
-  | DecodeArray(int, array<Result.t>)
-  | DecodeMap(int, Js.Dict.t<Result.t>)
+  | DecodeArray(int, array<Message.t>)
+  | DecodeMap(int, Js.Dict.t<Message.t>)
   | DecodeBinary(int)
   | DecodeExt(int, module(DecoderExtension))
-  | Done(Result.t)
+  | Done(Message.t)
 
 let decode = (t, binary) => {
   let {textDecoder, extensions} = t
@@ -49,22 +49,22 @@ let decode = (t, binary) => {
         let header = view->DataView.getUint8(cursor)
         let cursor = cursor + 1
         switch header {
-        | header if header < 0x80 => binary->decode(~state=Done(header->Result.make), ~cursor)
+        | header if header < 0x80 => binary->decode(~state=Done(header->Message.make), ~cursor)
         | header if header < 0x90 => {
             let len = header->land(0xf)
             binary->decode(~state=DecodeMap(len, Js.Dict.empty()), ~cursor)
           }
         | header if header < 0xa0 => {
             let len = header->land(0xf)
-            binary->decode(~state=DecodeArray(len, Result.makeArray(len)), ~cursor)
+            binary->decode(~state=DecodeArray(len, Message.makeArray(len)), ~cursor)
           }
         | header if header < 0xc0 => {
             let len = header->land(0x1f)
             binary->decode(~state=DecodeString(len), ~cursor)
           }
-        | 0xc0 => binary->decode(~state=Done(Js.null->Result.make), ~cursor)
-        | 0xc2 => binary->decode(~state=Done(false->Result.make), ~cursor)
-        | 0xc3 => binary->decode(~state=Done(true->Result.make), ~cursor)
+        | 0xc0 => binary->decode(~state=Done(Js.null->Message.make), ~cursor)
+        | 0xc2 => binary->decode(~state=Done(false->Message.make), ~cursor)
+        | 0xc3 => binary->decode(~state=Done(true->Message.make), ~cursor)
         | 0xc4 => {
             let len = view->DataView.getUint8(cursor)
             binary->decode(~state=DecodeBinary(len), ~cursor=cursor + 1)
@@ -115,48 +115,48 @@ let decode = (t, binary) => {
           }
         | 0xca => {
             let num = view->DataView.getFloat32(cursor)
-            binary->decode(~state=Done(num->Result.make), ~cursor=cursor + 4)
+            binary->decode(~state=Done(num->Message.make), ~cursor=cursor + 4)
           }
         | 0xcb => {
             let num = view->DataView.getFloat64(cursor)
-            binary->decode(~state=Done(num->Result.make), ~cursor=cursor + 8)
+            binary->decode(~state=Done(num->Message.make), ~cursor=cursor + 8)
           }
         | 0xcc => {
             let num = view->DataView.getUint8(cursor)
-            binary->decode(~state=Done(num->Result.make), ~cursor=cursor + 1)
+            binary->decode(~state=Done(num->Message.make), ~cursor=cursor + 1)
           }
         | 0xcd => {
             let num = view->DataView.getUint16(cursor)
-            binary->decode(~state=Done(num->Result.make), ~cursor=cursor + 2)
+            binary->decode(~state=Done(num->Message.make), ~cursor=cursor + 2)
           }
         | 0xce => {
             let num = view->DataView.getUint32(cursor)
-            binary->decode(~state=Done(num->Result.make), ~cursor=cursor + 4)
+            binary->decode(~state=Done(num->Message.make), ~cursor=cursor + 4)
           }
         | 0xcf => {
             let hi = view->DataView.getUint32(cursor)->Belt.Int.toFloat
             let lo = view->DataView.getUint32(cursor + 4)->Belt.Int.toFloat
             let num = hi *. Js.Math.pow_float(~base=256.0, ~exp=4.0) +. lo
-            binary->decode(~state=Done(num->Result.make), ~cursor=cursor + 8)
+            binary->decode(~state=Done(num->Message.make), ~cursor=cursor + 8)
           }
         | 0xd0 => {
             let num = view->DataView.getInt8(cursor)
-            binary->decode(~state=Done(num->Result.make), ~cursor=cursor + 1)
+            binary->decode(~state=Done(num->Message.make), ~cursor=cursor + 1)
           }
         | 0xd1 => {
             let num = view->DataView.getInt16(cursor)
-            binary->decode(~state=Done(num->Result.make), ~cursor=cursor + 2)
+            binary->decode(~state=Done(num->Message.make), ~cursor=cursor + 2)
           }
         | 0xd2 => {
             let num = view->DataView.getInt32(cursor)
-            binary->decode(~state=Done(num->Result.make), ~cursor=cursor + 4)
+            binary->decode(~state=Done(num->Message.make), ~cursor=cursor + 4)
           }
         | 0xd3 => {
             binary->Uint8Array.subarray(~start=cursor, ~end_=cursor + 9)->flip64
             let hi = view->DataView.getUint32(cursor)->Belt.Int.toFloat
             let lo = view->DataView.getUint32(cursor + 4)->Belt.Int.toFloat
             let num = hi *. Js.Math.pow_float(~base=256.0, ~exp=4.0) +. lo
-            binary->decode(~state=Done((0.0 -. num)->Result.make), ~cursor=cursor + 8)
+            binary->decode(~state=Done((0.0 -. num)->Message.make), ~cursor=cursor + 8)
           }
         | 0xd4 => {
             let type_ = view->DataView.getInt8(cursor)
@@ -215,11 +215,11 @@ let decode = (t, binary) => {
           }
         | 0xdc => {
             let len = view->DataView.getUint16(cursor)
-            binary->decode(~state=DecodeArray(len, Result.makeArray(len)), ~cursor=cursor + 2)
+            binary->decode(~state=DecodeArray(len, Message.makeArray(len)), ~cursor=cursor + 2)
           }
         | 0xdd => {
             let len = view->DataView.getUint32(cursor)
-            binary->decode(~state=DecodeArray(len, Result.makeArray(len)), ~cursor=cursor + 4)
+            binary->decode(~state=DecodeArray(len, Message.makeArray(len)), ~cursor=cursor + 4)
           }
         | 0xde => {
             let len = view->DataView.getUint16(cursor)
@@ -231,7 +231,7 @@ let decode = (t, binary) => {
           }
         | header if header < 0x100 => {
             let num = header->lxor(255)->lnot
-            binary->decode(~state=Done(num->Result.make), ~cursor)
+            binary->decode(~state=Done(num->Message.make), ~cursor)
           }
         | header => Js.Exn.raiseError(`Unknown header ${header->Belt.Int.toString}`)
         }
@@ -239,11 +239,11 @@ let decode = (t, binary) => {
     | DecodeString(len) => {
         let view = binary->Uint8Array.subarray(~start=cursor, ~end_=cursor + len)
         let text = textDecoder->TextDecoder.decode2(view)
-        binary->decode(~state=Done(text->Result.make), ~cursor=cursor + len)
+        binary->decode(~state=Done(text->Message.make), ~cursor=cursor + len)
       }
     | DecodeArray(len, array) =>
       switch len {
-      | 0 => binary->decode(~state=Done(array->Result.make), ~cursor)
+      | 0 => binary->decode(~state=Done(array->Message.make), ~cursor)
       | len => {
           let (item, cursor) = binary->decode(~state=ExpectHeader, ~cursor)
           let index = array->Js.Array2.length - len
@@ -253,12 +253,12 @@ let decode = (t, binary) => {
       }
     | DecodeMap(len, map) =>
       switch len {
-      | 0 => binary->decode(~state=Done(map->Result.make), ~cursor)
+      | 0 => binary->decode(~state=Done(map->Message.make), ~cursor)
       | len => {
           let (key, cursor) = binary->decode(~state=ExpectHeader, ~cursor)
           if Js.typeof(key) == "string" {
             let (value, cursor) = binary->decode(~state=ExpectHeader, ~cursor)
-            map->Js.Dict.set(key->Result.toString, value)
+            map->Js.Dict.set(key->Message.toString, value)
             binary->decode(~state=DecodeMap(len - 1, map), ~cursor)
           } else {
             Js.Exn.raiseError(`Unexpected key type. Expected string, but got ${Js.typeof(key)}`)
@@ -267,17 +267,17 @@ let decode = (t, binary) => {
       }
     | DecodeBinary(len) => {
         let copy = binary->Uint8Array.slice(~start=cursor, ~end_=cursor + len)
-        binary->decode(~state=Done(copy->Result.make), ~cursor=cursor + len)
+        binary->decode(~state=Done(copy->Message.make), ~cursor=cursor + len)
       }
     | DecodeExt(len, module(DecoderExtension)) => {
         let copy = binary->Uint8Array.slice(~start=cursor, ~end_=cursor + len)
         binary->decode(~state=Done(DecoderExtension.decode(copy, len)), ~cursor=cursor + len)
       }
-    | Done(result) => (result, cursor)
+    | Done(msg) => (msg, cursor)
     }
   }
 
-  let (result, readLength) = binary->decode(~state=ExpectHeader, ~cursor=0)
+  let (msg, readLength) = binary->decode(~state=ExpectHeader, ~cursor=0)
 
   let inputLength = binary->Uint8Array.length
   if inputLength != readLength {
@@ -286,5 +286,5 @@ let decode = (t, binary) => {
     )
   }
 
-  result->Result.emit
+  msg
 }

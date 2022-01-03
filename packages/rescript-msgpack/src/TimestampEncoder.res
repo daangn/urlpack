@@ -1,11 +1,11 @@
 let \"type" = -1
 
-let check: Js.Json.t => bool = %raw(`x => x instanceof Date`)
+let check: Js.Types.obj_val => bool = %raw(`x => x instanceof Date`)
 
-let encode: Js.Json.t => Js.TypedArray2.Uint8Array.t = %raw(`input => {
+let encode: Js.Types.obj_val => Js.TypedArray2.Uint8Array.t = %raw(`obj => {
   let uint64bound = 0x100000000;
 
-  let millis = input.getTime();
+  let millis = obj.getTime();
   let seconds = millis / 1000 | 0;
   let nanos = (millis - (seconds * 1000)) * 1e6;
   let bound = uint64bound - 1;

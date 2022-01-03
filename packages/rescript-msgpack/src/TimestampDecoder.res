@@ -2,7 +2,7 @@ let \"type" = -1
 
 // almost copy-pated from msgpack5's DateCodec implementation
 // https://github.com/mcollina/msgpack5/blob/master/lib/codecs/DateCodec.js
-let decode: (Js.TypedArray2.Uint8Array.t, int) => Result.t = %raw(`(array, byteLength) => {
+let decode: (Js.TypedArray2.Uint8Array.t, int) => Message.t = %raw(`(array, byteLength) => {
   let view = new DataView(array.buffer);
   switch (byteLength) {
     case 4: {

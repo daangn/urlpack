@@ -5,4 +5,4 @@ type t = {
 
 let make: (~extensions: array<module(Extension.DecoderExtension)>=?, unit) => t
 
-let decode: (t, Js.TypedArray2.Uint8Array.t) => {..}
+let decode: (t, Js.TypedArray2.Uint8Array.t) => Message.t

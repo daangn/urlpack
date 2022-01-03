@@ -1,13 +1,13 @@
 module type EncoderExtension = {
   let \"type": int
 
-  let check: {..} => bool
+  let check: Js.Types.obj_val => bool
 
-  let encode: {..} => Js.TypedArray2.Uint8Array.t
+  let encode: Js.Types.obj_val => Js.TypedArray2.Uint8Array.t
 }
 
 module type DecoderExtension = {
   let \"type": int
 
-  let decode: (Js.TypedArray2.Uint8Array.t, int) => Result.t
+  let decode: (Js.TypedArray2.Uint8Array.t, int) => Message.t
 }
