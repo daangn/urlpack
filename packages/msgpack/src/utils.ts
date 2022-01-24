@@ -1,1 +1,1 @@
-export let isFloat = (num: number) => num % 1 > 0;
+export let isFloat = (num) =>  num % 1 !== 0
