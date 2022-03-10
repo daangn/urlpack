@@ -403,7 +403,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@urlpack/base-codec@workspace:^, @urlpack/base-codec@workspace:^1.0.1, @urlpack/base-codec@workspace:packages/base-codec":
+"@urlpack/base-codec@npm:^1.0.1":
+  version: 1.1.0
+  resolution: "@urlpack/base-codec@npm:1.1.0"
+  checksum: 5319173de4fc6136e47b24c4e74f445b9520dda6fe4682d6a6d76724170a4157a4842ff889505e56bb8e5ace7a8b230237a5eff309924d11ed6bb2ab1cd4db0b
+  languageName: node
+  linkType: hard
+
+"@urlpack/base-codec@workspace:^, @urlpack/base-codec@workspace:^2.0.0, @urlpack/base-codec@workspace:packages/base-codec":
   version: 0.0.0-use.local
   resolution: "@urlpack/base-codec@workspace:packages/base-codec"
   dependencies:
@@ -412,11 +419,20 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@urlpack/base58@^1.0.4, @urlpack/base58@workspace:^1.0.4, @urlpack/base58@workspace:packages/base58":
+"@urlpack/base58@npm:^1.0.4":
+  version: 1.1.0
+  resolution: "@urlpack/base58@npm:1.1.0"
+  dependencies:
+    "@urlpack/base-codec": ^1.0.1
+  checksum: 55b598ae24b2904250c30b3675dc55b7bc5cfe0c0a0cc4ae12bd3a433c1fb08ac9b99bb3022fc3ae8b0ae67029a5cfedf660fd3d6e7ae88b50840614f63d919c
+  languageName: node
+  linkType: hard
+
+"@urlpack/base58@workspace:^2.0.0, @urlpack/base58@workspace:packages/base58":
   version: 0.0.0-use.local
   resolution: "@urlpack/base58@workspace:packages/base58"
   dependencies:
-    "@urlpack/base-codec": "workspace:^1.0.1"
+    "@urlpack/base-codec": "workspace:^2.0.0"
     nanobundle: ^0.0.21
     tsm: ^2.2.1
     typescript: ^4.5.4
@@ -430,7 +446,7 @@ __metadata:
   resolution: "@urlpack/base62@workspace:packages/base62"
   dependencies:
     "@types/benchmark": ^2.1.1
-    "@urlpack/base-codec": "workspace:^1.0.1"
+    "@urlpack/base-codec": "workspace:^2.0.0"
     benchmark: ^2.1.4
     nanobundle: ^0.0.21
     tsm: ^2.2.1
@@ -445,8 +461,8 @@ __metadata:
   resolution: "@urlpack/json@workspace:packages/json"
   dependencies:
     "@urlpack/base-codec": "workspace:^"
-    "@urlpack/base58": "workspace:^1.0.4"
-    "@urlpack/msgpack": "workspace:^1.0.0"
+    "@urlpack/base58": "workspace:^2.0.0"
+    "@urlpack/msgpack": "workspace:^2.0.0"
     nanobundle: ^0.0.21
     tsm: ^2.2.1
     typescript: ^4.5.4
@@ -455,7 +471,14 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@urlpack/msgpack@^1.0.3, @urlpack/msgpack@workspace:^1.0.0, @urlpack/msgpack@workspace:packages/msgpack":
+"@urlpack/msgpack@npm:^1.0.3":
+  version: 1.1.0
+  resolution: "@urlpack/msgpack@npm:1.1.0"
+  checksum: d685e441531c3766ec32fe0c3593d499ca4eac8f90fc8c56413c26364659a3c6b832b588df28a1a2f4c1166a5c4a9236b53a8b141f4d58b62416826e0eb5725b
+  languageName: node
+  linkType: hard
+
+"@urlpack/msgpack@workspace:^2.0.0, @urlpack/msgpack@workspace:packages/msgpack":
   version: 0.0.0-use.local
   resolution: "@urlpack/msgpack@workspace:packages/msgpack"
   dependencies:
