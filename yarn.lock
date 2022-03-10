@@ -403,7 +403,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@urlpack/base-codec@workspace:^1.0.1, @urlpack/base-codec@workspace:packages/base-codec":
+"@urlpack/base-codec@workspace:^, @urlpack/base-codec@workspace:^1.0.1, @urlpack/base-codec@workspace:packages/base-codec":
   version: 0.0.0-use.local
   resolution: "@urlpack/base-codec@workspace:packages/base-codec"
   dependencies:
@@ -444,6 +444,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@urlpack/json@workspace:packages/json"
   dependencies:
+    "@urlpack/base-codec": "workspace:^"
     "@urlpack/base58": "workspace:^1.0.4"
     "@urlpack/msgpack": "workspace:^1.0.0"
     nanobundle: ^0.0.21

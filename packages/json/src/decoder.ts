@@ -9,7 +9,7 @@ type JsonDecoderOptions<Data> = {
 export function makeJsonDecoder<Data>(options: JsonDecoderOptions<Data> = {}): {
   decode: (str: string) => Data,
 } {
-  const decodeString = decodeBase58;
+  const decodeString = options.decodeString || decodeBase58;
   const decodeBinary = options.decodeBinary || makeMessagePackDecoder().decode;
   return {
     decode: str => decodeBinary(decodeString(str)) as Data,
