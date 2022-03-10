@@ -14,7 +14,7 @@ Pure JavaScript implementation of the [MessagePack](https://msgpack.org/) codec.
 ## Usage
 
 ```ts
-import { makeMessagePackEncoder, makeMessagePackEncoder } from '@urlpack/msgpack';
+import { makeMessagePackEncoder, makeMessagePackDecoder } from '@urlpack/msgpack';
 
 const encoder = makeMessagePackEncoder();
 const decoder = makeMessagePackDecoder();
