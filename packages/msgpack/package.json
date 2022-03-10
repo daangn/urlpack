@@ -10,7 +10,6 @@
   },
   "source": "./src/index.ts",
   "type": "module",
-  "sideEffects": false,
   "main": "./src/index.ts",
   "module": "./lib/index.mjs",
   "types": "./lib/index.d.ts",
