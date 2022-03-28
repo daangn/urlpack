@@ -1,4 +1,4 @@
-import type { EncoderExtension } from './types';
+import type { EncoderExtension } from '../types';
 
 let uint64bound = 0x100000000;
 
