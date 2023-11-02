@@ -1,6 +1,6 @@
 {
   "name": "@urlpack/base58",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "license": "MIT",
   "homepage": "https://github.com/daangn/urlpack/tree/main/packages/base58",
   "repository": {
@@ -36,7 +36,7 @@
     "test:watch": "yarn test || true && watchlist src tests -- yarn test"
   },
   "dependencies": {
-    "@urlpack/base-codec": "workspace:^2.0.0"
+    "@urlpack/base-codec": "workspace:^3.0.0"
   },
   "devDependencies": {
     "nanobundle": "^0.0.21",
