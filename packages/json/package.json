@@ -36,7 +36,7 @@
     "test:watch": "yarn test || true && watchlist src tests -- yarn test"
   },
   "dependencies": {
-    "@urlpack/base58": "workspace:^2.0.0",
+    "@urlpack/base58": "workspace:^2.0.1",
     "@urlpack/msgpack": "workspace:^2.0.0"
   },
   "devDependencies": {

@@ -1,5 +1,13 @@
 # @urlpack/base62
 
+## 2.0.1
+
+### Patch Changes
+
+- Updated dependencies [bdc1a3a]
+- Updated dependencies [3bc7abe]
+  - @urlpack/base-codec@3.0.0
+
 ## 2.0.0
 
 ### Major Changes
