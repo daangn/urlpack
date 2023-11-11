@@ -1,5 +1,4 @@
-import type { Input } from './types';
-import type { DecoderExtension } from './ext/types';
+import type { Input, DecoderExtension } from './types';
 
 // @ts-ignore
 import { make as makeDecoder, decode } from './decoder.bs';
