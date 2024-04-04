@@ -2,7 +2,7 @@ import { test } from 'uvu';
 import * as assert from 'uvu/assert';
 
 import { makeBaseEncoder, makeBaseDecoder } from '@urlpack/base-codec';
-import { makeJsonEncoder, makeJsonDecoder } from '../src';
+import { makeJsonEncoder, makeJsonDecoder } from '@urlpack/json';
 
 test('pack json with default (msgpack, base58)', () => {
   const data = {

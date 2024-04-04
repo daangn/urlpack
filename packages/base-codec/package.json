@@ -8,22 +8,21 @@
     "url": "https://github.com/daangn/urlpack.git",
     "directory": "packages/base-codec"
   },
-  "source": "./src/index.ts",
   "type": "module",
   "main": "./src/index.ts",
-  "module": "./lib/index.mjs",
-  "types": "./lib/index.d.ts",
-  "exports": {
-    ".": {
-      "types": "./lib/index.d.ts",
-      "import": "./lib/index.mjs",
-      "require": "./lib/index.cjs"
-    },
-    "./package.json": "./package.json"
-  },
   "publishConfig": {
     "access": "public",
-    "main": "./lib/index.mjs"
+    "main": "./lib/index.mjs",
+    "module": "./lib/index.mjs",
+    "types": "./lib/index.d.ts",
+    "exports": {
+      ".": {
+        "types": "./lib/index.d.ts",
+        "import": "./lib/index.mjs",
+        "require": "./lib/index.cjs"
+      },
+      "./package.json": "./package.json"
+    }
   },
   "files": [
     "src",

@@ -1,8 +1,8 @@
 import { test } from 'uvu';
 import * as assert from 'uvu/assert';
 
-import type { Input } from '../src/types';
-import { makeMessagePackEncoder, makeMessagePackDecoder } from '../src';
+import type { Input } from '../src/types.ts';
+import { makeMessagePackEncoder, makeMessagePackDecoder } from '@urlpack/msgpack';
 
 const { encode } = makeMessagePackEncoder();
 const { decode } = makeMessagePackDecoder();

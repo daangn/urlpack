@@ -1,7 +1,7 @@
 import { test } from 'uvu';
 import * as assert from 'uvu/assert';
 
-import { encode, decode } from '..';
+import { encode, decode } from '@urlpack/base62';
 
 const textEncoder = new TextEncoder();
 

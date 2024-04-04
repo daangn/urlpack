@@ -1,7 +1,7 @@
 import { test } from 'uvu';
 import * as assert from 'uvu/assert';
 
-import { makeMessagePackDecoder } from '../src';
+import { makeMessagePackDecoder } from '@urlpack/msgpack';
 
 const { decode } = makeMessagePackDecoder();
 

@@ -1,4 +1,4 @@
-import type { DecoderExtension } from './types';
+import type { DecoderExtension } from './types.ts';
 
 export const timestampDecoder: DecoderExtension<Date> = {
   type: -1,

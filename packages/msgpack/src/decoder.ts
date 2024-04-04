@@ -1,8 +1,8 @@
-import type { Input } from './types';
-import type { DecoderExtension } from './ext/types';
+import type { Input } from './types.ts';
+import type { DecoderExtension } from './ext/types.ts';
 
 // @ts-ignore
-import { make as makeDecoder, decode } from './decoder.bs';
+import { make as makeDecoder, decode } from './decoder.bs.js';
 
 type DecodeFn<ExtensionType extends object> = (dataArray: Uint8Array) => Input<ExtensionType>;
 

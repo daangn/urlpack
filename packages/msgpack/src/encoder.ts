@@ -1,7 +1,7 @@
-import type { Input } from './types';
-import { isFloat } from './utils';
-import type { EncoderExtension } from './ext/types';
-import { timestampEncoder } from './ext/TimestampEncoder';
+import type { Input } from './types.ts';
+import { isFloat } from './utils.ts';
+import type { EncoderExtension } from './ext/types.ts';
+import { timestampEncoder } from './ext/TimestampEncoder.ts';
 
 let uint16min = 0x100;
 let uint32min = 0x10000;

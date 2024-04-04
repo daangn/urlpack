@@ -1,2 +1,2 @@
-export * from './encode';
-export * from './decode';
+export * from './encode.ts';
+export * from './decode.ts';
