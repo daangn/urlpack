@@ -1,4 +1,5 @@
-const { Benchmark } = require('benchmark');
+import _benchmark from 'benchmark';
+const { Benchmark } = _benchmark;
 
 const textDecoder = new TextDecoder();
 

@@ -1,12 +1,17 @@
-const { Benchmark } = require('benchmark');
+import _benchmark from 'benchmark';
+const { Benchmark } = _benchmark;
 
-const { makeMessagePackEncoder } = require('@urlpack/msgpack');
+import { makeMessagePackEncoder } from '@urlpack/msgpack';
 const urlpack = makeMessagePackEncoder();
 
-const msgpack = require('@msgpack/msgpack');
-const msgpack5 = require('msgpack5')();
-const msgpackLite = require('msgpack-lite');
-const msgpackr = require('msgpackr');
+import msgpack from '@msgpack/msgpack';
+
+import _msgpack5 from 'msgpack5'
+const msgpack5 = _msgpack5();
+
+import msgpackLite from 'msgpack-lite';
+
+import * as msgpackr from 'msgpackr';
 
 const complex1 = {
   a: { b: 'c' },

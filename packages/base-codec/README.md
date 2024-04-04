@@ -29,14 +29,14 @@ decoder.encode(str); // => string => Uint8Array
 ## Benchmark
 
 ```txt
-@urlpack/base-codec encode x 987 ops/sec ±0.49% (93 runs sampled)
-@urlpack/base-codec decode x 1,051 ops/sec ±0.46% (94 runs sampled)
+@urlpack/base-codec encode x 1,178 ops/sec ±0.23% (99 runs sampled)
+@urlpack/base-codec decode x 1,948 ops/sec ±0.37% (100 runs sampled)
 
-base-x encode x 1,410 ops/sec ±0.48% (92 runs sampled)
-base-x decode x 1,718 ops/sec ±2.18% (90 runs sampled)
+base-x encode x 1,381 ops/sec ±0.54% (97 runs sampled)
+base-x decode x 2,039 ops/sec ±0.33% (100 runs sampled)
 
-base58-js encode x 720 ops/sec ±0.86% (93 runs sampled)
-base58-js decode x 169 ops/sec ±2.05% (78 runs sampled)
+base58-js encode x 1,017 ops/sec ±0.16% (98 runs sampled)
+base58-js decode x 335 ops/sec ±0.21% (96 runs sampled)
 ```
 
 It should be better. PR welcome

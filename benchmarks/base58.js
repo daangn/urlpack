@@ -1,8 +1,9 @@
-const { Benchmark } = require('benchmark');
+import _benchmark from 'benchmark';
+const { Benchmark } = _benchmark;
 
-const { makeBaseEncoder, makeBaseDecoder } = require('@urlpack/base-codec/lib');
-const baseXCodec = require('base-x');
-const base58js = require('base58-js');
+import { makeBaseEncoder, makeBaseDecoder } from '@urlpack/base-codec';
+import baseXCodec from 'base-x';
+import * as base58js from 'base58-js';
 
 const baseAlphabet = '123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz';
 const urlpack = {
@@ -17,10 +18,10 @@ Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem
 const text = urlpack.encode(buffer);
 
 new Benchmark.Suite()
-.add('urlpack encode', () => {
+.add('@urlpack/base-codec encode', () => {
   urlpack.encode(buffer);
 })
-.add('urlpack decode', () => {
+.add('@urlpack/base-codec decode', () => {
   urlpack.decode(text);
 })
 .add('base-x encode', () => {

@@ -87,10 +87,10 @@ Run on Desktop (Intel i5-9600K (6) @ 4.600GHz), Ubuntu 20.04.3 LTS x86_64 and No
 
 |                  | Size   | Size (min+gzipped) | ESM support?*       | DCE-friendly?* | Zero-dependencies* |
 |:-----------------|-------:|-------------------:|---------------------|----------------|--------------------|
-| @urlpack/msgpack | 8.4kB  | 2.5kB              | ✔                   | ✔              | ✔                  |
-| @msgpack/msgpack | 28.5kB | 7.3kB              | 🟡 (No export map)  | ✔              | ✔                  |
+| @urlpack/msgpack | 9.2kB  | 3.2kB              | ✔                   | ✔              | ✔                  |
+| @msgpack/msgpack | 29.5kB | 7.5kB              | 🟡 (No export map)  | ✔              | ✔                  |
 | msgpack-lite     | 24.9kB | 7.8kB              | ❌                  | ❌             | ❌                 |
-| msgpackr         | 22.8kB | 8.2kB              | ✔                   | ✔              | ✔                  |
+| msgpackr         | 27.5kB | 9.9kB              | ✔                   | ✔              | ✔                  |
 
 * Packages should provide an ESM bundle and an export map so that it can be resolved on the Node.js environment.
 * Encoder and decoder should be separated modules to eliminate unnecessary code on a production build.
@@ -99,33 +99,33 @@ Run on Desktop (Intel i5-9600K (6) @ 4.600GHz), Ubuntu 20.04.3 LTS x86_64 and No
 ### Encoding speed
 
 ```txt
-complex 1 - @urlpack/msgpack x   260,677 ops/sec ±0.78% (86 runs sampled)
-complex 1 - @msgpack/msgpack x   578,810 ops/sec ±1.47% (85 runs sampled)
-complex 1 - msgpack5         x   146,834 ops/sec ±0.62% (98 runs sampled)
-complex 1 - msgpack-lite     x   327,080 ops/sec ±1.07% (89 runs sampled)
-complex 1 - msgpackr         x 2,886,374 ops/sec ±0.10% (100 runs sampled)
+encode complex 1 - @urlpack/msgpack x   555,240 ops/sec ±1.45% (91 runs sampled)
+encode complex 1 - @msgpack/msgpack x 1,487,981 ops/sec ±0.89% (91 runs sampled)
+encode complex 1 - msgpack5         x   187,549 ops/sec ±0.62% (97 runs sampled)
+encode complex 1 - msgpack-lite     x   888,246 ops/sec ±0.66% (96 runs sampled)
+encode complex 1 - msgpackr         x 5,192,484 ops/sec ±0.48% (99 runs sampled)
 
-complex 2 - @urlpack/msgpack x    90,249 ops/sec ±0.92% (80 runs sampled)
-complex 2 - @msgpack/msgpack x   387,485 ops/sec ±1.95% (82 runs sampled)
-complex 2 - msgpack5         x    89,493 ops/sec ±0.59% (95 runs sampled)
-complex 2 - msgpack-lite     x   163,182 ops/sec ±0.99% (95 runs sampled)
-complex 2 - msgpackr         x 1,237,754 ops/sec ±0.21% (98 runs sampled)
+encode complex 2 - @urlpack/msgpack x   214,766 ops/sec ±0.75% (94 runs sampled)
+encode complex 2 - @msgpack/msgpack x   797,785 ops/sec ±0.80% (96 runs sampled)
+encode complex 2 - msgpack5         x   128,513 ops/sec ±0.60% (94 runs sampled)
+encode complex 2 - msgpack-lite     x   385,248 ops/sec ±0.58% (96 runs sampled)
+encode complex 2 - msgpackr         x 2,219,375 ops/sec ±0.31% (101 runs sampled)
 ```
 
 ### Decoding speed
 
 ```txt
-complex 1 - @urlpack/msgpack x   720,383 ops/sec ±1.12% (94 runs sampled)
-complex 1 - @msgpack/msgpack x 1,454,144 ops/sec ±0.28% (98 runs sampled)
-complex 1 - msgpack5         x   308,814 ops/sec ±0.23% (99 runs sampled)
-complex 1 - msgpack-lite     x   641,485 ops/sec ±0.52% (93 runs sampled)
-complex 1 - msgpackr         x 3,735,642 ops/sec ±0.22% (96 runs sampled)
+decode complex 1 - @urlpack/msgpack x 1,270,298 ops/sec ±0.93% (97 runs sampled)
+decode complex 1 - @msgpack/msgpack x 2,399,679 ops/sec ±0.30% (100 runs sampled)
+decode complex 1 - msgpack5         x   482,239 ops/sec ±0.52% (98 runs sampled)
+decode complex 1 - msgpack-lite     x 1,199,416 ops/sec ±0.28% (99 runs sampled)
+decode complex 1 - msgpackr         x 5,277,932 ops/sec ±0.37% (93 runs sampled)
 
-complex 2 - @urlpack/msgpack x   295,788 ops/sec ±0.46% (98 runs sampled)
-complex 2 - @msgpack/msgpack x   707,526 ops/sec ±0.20% (97 runs sampled)
-complex 2 - msgpack5         x   125,554 ops/sec ±0.16% (97 runs sampled)
-complex 2 - msgpack-lite     x   200,795 ops/sec ±1.80% (97 runs sampled)
-complex 2 - msgpackr         x 1,287,906 ops/sec ±0.19% (100 runs sampled)
+decode complex 2 - @urlpack/msgpack x   476,016 ops/sec ±0.26% (99 runs sampled)
+decode complex 2 - @msgpack/msgpack x 1,109,229 ops/sec ±0.31% (100 runs sampled)
+decode complex 2 - msgpack5         x   204,347 ops/sec ±0.50% (99 runs sampled)
+decode complex 2 - msgpack-lite     x   357,116 ops/sec ±0.91% (95 runs sampled)
+decode complex 2 - msgpackr         x 2,181,796 ops/sec ±0.28% (96 runs sampled)
 ```
 
 ## License
