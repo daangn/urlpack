@@ -820,6 +820,19 @@ __metadata:
   languageName: unknown
   linkType: soft
 
+"@urlpack/base10@workspace:^0.0.0, @urlpack/base10@workspace:packages/base10":
+  version: 0.0.0-use.local
+  resolution: "@urlpack/base10@workspace:packages/base10"
+  dependencies:
+    "@urlpack/base-codec": "workspace:^2.0.0"
+    nanobundle: "npm:^2.0.0"
+    tsm: "npm:^2.3.0"
+    typescript: "npm:^5.4.3"
+    uvu: "npm:^0.5.6"
+    watchlist: "npm:^0.3.1"
+  languageName: unknown
+  linkType: soft
+
 "@urlpack/base58@workspace:^2.0.0, @urlpack/base58@workspace:packages/base58":
   version: 0.0.0-use.local
   resolution: "@urlpack/base58@workspace:packages/base58"
@@ -892,6 +905,21 @@ __metadata:
     msgpack-lite: "npm:^0.1.26"
     msgpack5: "npm:^6.0.2"
     msgpackr: "npm:^1.10.1"
+    tsm: "npm:^2.3.0"
+    typescript: "npm:^5.4.3"
+    uvu: "npm:^0.5.6"
+    watchlist: "npm:^0.3.1"
+  languageName: unknown
+  linkType: soft
+
+"@urlpack/qrjson@workspace:packages/qrjson":
+  version: 0.0.0-use.local
+  resolution: "@urlpack/qrjson@workspace:packages/qrjson"
+  dependencies:
+    "@urlpack/base-codec": "workspace:^2.0.0"
+    "@urlpack/base10": "workspace:^0.0.0"
+    "@urlpack/msgpack": "workspace:^2.0.0"
+    nanobundle: "npm:^2.0.0"
     tsm: "npm:^2.3.0"
     typescript: "npm:^5.4.3"
     uvu: "npm:^0.5.6"

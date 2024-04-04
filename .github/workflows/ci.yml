@@ -28,7 +28,7 @@ jobs:
 
       - name: Build and validate packages
         run: |
-          yarn workspaces foreach -t run build
+          yarn workspaces foreach --worktree --interlaced --topological run build
 
       - name: Run all tests
         run: |
