@@ -4,11 +4,11 @@
 [![License](https://img.shields.io/npm/l/@urlpack/qrjson)](#License)
 [![Bundle Size](https://img.shields.io/bundlephobia/minzip/@urlpack/qrjson)](https://bundlephobia.com/package/@urlpack/qrjson)
 
-Compress JSON data into compact & optimized to URL for QR Codes
+Compress JSON data into compact & optimized to URL for QR Codes with numeric mode encoding
 
 - ES Modules & Browser compatible
 - Compact output using [MessagePack](https://msgpack.org/)
-- Use Base10 encoding to get clear QR Code image
+- Use Base10 encoding to get clear QR Code (mode=numeric) image
 
 ## Usage
 
@@ -25,9 +25,7 @@ encoder.encode({
     baz: [1, 2, 3, 4, 5],
   },
 });
-// => 'QL3sGqgSwhebCV6jsPsxSCG6DPGZUAo7qtLbEFxFN3bequ3qABcg6pxvpvr36FveMxCtD4zNSWSpHmxgz8'
-//
-// Only 82 characters, 35% smaller output than JSON.stringify + lz-string
+// => '1605288693315933041592216384647639863862606035591552983841613971370651694842366403819686780144511394090067728031488880352135548504776147881624581'
 ```
 
 ## LICENSE
