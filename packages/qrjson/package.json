@@ -1,6 +1,6 @@
 {
   "name": "@urlpack/qrjson",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "license": "MIT",
   "homepage": "https://github.com/daangn/urlpack/tree/main/packages/qrjson",
   "repository": {
@@ -36,7 +36,7 @@
     "test:watch": "yarn test || true && watchlist src tests -- yarn test"
   },
   "dependencies": {
-    "@urlpack/base10": "workspace:^0.0.0",
+    "@urlpack/base10": "workspace:^1.0.0",
     "@urlpack/msgpack": "workspace:^2.0.0"
   },
   "devDependencies": {

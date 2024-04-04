@@ -820,7 +820,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@urlpack/base10@workspace:^0.0.0, @urlpack/base10@workspace:packages/base10":
+"@urlpack/base10@workspace:^1.0.0, @urlpack/base10@workspace:packages/base10":
   version: 0.0.0-use.local
   resolution: "@urlpack/base10@workspace:packages/base10"
   dependencies:
@@ -917,7 +917,7 @@ __metadata:
   resolution: "@urlpack/qrjson@workspace:packages/qrjson"
   dependencies:
     "@urlpack/base-codec": "workspace:^2.0.0"
-    "@urlpack/base10": "workspace:^0.0.0"
+    "@urlpack/base10": "workspace:^1.0.0"
     "@urlpack/msgpack": "workspace:^2.0.0"
     nanobundle: "npm:^2.0.0"
     tsm: "npm:^2.3.0"
