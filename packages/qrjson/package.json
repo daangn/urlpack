@@ -8,22 +8,21 @@
     "url": "https://github.com/daangn/urlpack.git",
     "directory": "packages/qrjson"
   },
-  "source": "./src/index.ts",
   "type": "module",
   "main": "./src/index.ts",
-  "module": "./lib/index.mjs",
-  "types": "./lib/index.d.ts",
-  "exports": {
-    ".": {
-      "types": "./lib/index.d.ts",
-      "import": "./lib/index.mjs",
-      "require": "./lib/index.cjs"
-    },
-    "./package.json": "./package.json"
-  },
   "publishConfig": {
     "access": "public",
-    "main": "./lib/index.mjs"
+    "main": "./lib/index.mjs",
+    "module": "./lib/index.mjs",
+    "types": "./lib/index.d.ts",
+    "exports": {
+      ".": {
+        "types": "./lib/index.d.ts",
+        "import": "./lib/index.mjs",
+        "require": "./lib/index.cjs"
+      },
+      "./package.json": "./package.json"
+    }
   },
   "files": [
     "src",
@@ -32,19 +31,17 @@
   "scripts": {
     "prepack": "yarn build",
     "build": "nanobundle build",
-    "test": "uvu -r tsm",
-    "test:watch": "yarn test || true && watchlist src tests -- yarn test"
+    "test": "node --test",
+    "test:watch": "node --test --watch"
   },
   "dependencies": {
     "@urlpack/base10": "workspace:^1.0.0",
     "@urlpack/msgpack": "workspace:^2.0.0"
   },
   "devDependencies": {
+    "@types/node": "^24.0.3",
     "@urlpack/base-codec": "workspace:^2.0.0",
-    "nanobundle": "^2.0.0",
-    "tsm": "^2.3.0",
-    "typescript": "^5.8.3",
-    "uvu": "^0.5.6",
-    "watchlist": "^0.3.1"
+    "nanobundle": "^2.1.0",
+    "typescript": "^5.8.3"
   }
 }

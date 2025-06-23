@@ -1,7 +1,7 @@
-import { test } from 'uvu';
-import * as assert from 'uvu/assert';
+import { test } from 'node:test';
+import * as assert from 'node:assert/strict';
 
-import { encode, decode } from '@urlpack/base62';
+import { encode, decode } from '@urlpack/base58';
 
 const textEncoder = new TextEncoder();
 
@@ -9,28 +9,27 @@ const textEncoder = new TextEncoder();
 const cases: Array<[binary: Uint8Array, text: string]> = [
   [
     textEncoder.encode('Hello World!'),
-    'T8dgcjRGkZ3aysdN',
+    '2NEpo7TZRRrLZSi2U',
   ],
   [
     textEncoder.encode(
       'The quick brown fox jumps over the lazy dog.',
     ),
-    'XGPLPeg6g0VCuZCSfg8LKEZOBVFQ79VvzR8f2OlDiCg5SwBJDmeq6nysKtS',
+    'USm3fpXnKG5EUBx2ndxBDMPVciP5hGey2Jh4NDv6gmeo1LkMeiKrLJUUBk6Z'
+    ,
   ],
   [
     new Uint8Array([0x00, 0x00, 0x28, 0x7f, 0xb4, 0xcd]),
-    '00jyw3x',
+    '11233QC4',
   ],
 ];
 
 for (const [binary, text] of cases) {
-  test('base62.encode', () => {
-    assert.equal(encode(binary), text);
+  test('base58.encode', () => {
+    assert.deepEqual(encode(binary), text);
   });
 
-  test('base62.decode', () => {
-    assert.equal(decode(text), binary);
+  test('base58.decode', () => {
+    assert.deepEqual(decode(text), binary);
   });
 }
-
-test.run();

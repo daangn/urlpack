@@ -1,5 +1,5 @@
-import { test } from 'uvu';
-import * as assert from 'uvu/assert';
+import { test } from 'node:test';
+import * as assert from 'node:assert/strict';
 
 import { makeBaseEncoder, makeBaseDecoder } from '@urlpack/base-codec';
 import { makeJsonEncoder, makeJsonDecoder } from '@urlpack/json';
@@ -44,5 +44,3 @@ test('pack json with custom (msgpack, base34)', () => {
 
   assert.equal(decode(stored), data);
 });
-
-test.run();

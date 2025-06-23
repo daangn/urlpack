@@ -1,7 +1,6 @@
-import { test } from 'uvu';
-import * as assert from 'uvu/assert';
+import { test } from 'node:test';
+import * as assert from 'node:assert/strict';
 
-import { makeBaseEncoder, makeBaseDecoder } from '@urlpack/base-codec';
 import { makeQrJsonEncoder, makeQrJsonDecoder } from '@urlpack/qrjson';
 
 test('pack json', () => {
@@ -20,7 +19,7 @@ test('pack json', () => {
   const stored = encode(data);
   console.log(stored);
 
-  assert.equal(decode(stored), data);
+  assert.deepEqual(decode(stored), data);
 });
 
 test.run();

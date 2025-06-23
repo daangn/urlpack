@@ -1,5 +1,5 @@
-import { test } from 'uvu';
-import * as assert from 'uvu/assert';
+import { test } from 'node:test';
+import * as assert from 'node:assert/strict';
 
 import { encode, decode } from '@urlpack/base10';
 
@@ -24,12 +24,10 @@ const cases: Array<[binary: Uint8Array, text: string]> = [
 
 for (const [binary, text] of cases) {
   test('base10.encode', () => {
-    assert.equal(encode(binary), text);
+    assert.deepEqual(encode(binary), text);
   });
 
   test('base10.decode', () => {
-    assert.equal(decode(text), binary);
+    assert.deepEqual(decode(text), binary);
   });
 }
-
-test.run();
