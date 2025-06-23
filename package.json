@@ -23,7 +23,7 @@
     "msgpack5": "^6.0.2",
     "msgpackr": "^1.10.1",
     "tsm": "^2.3.0",
-    "typescript": "^5.4.3",
+    "typescript": "^5.8.3",
     "uvu": "^0.5.6",
     "watchlist": "^0.3.1"
   },

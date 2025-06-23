@@ -43,7 +43,7 @@
     "@urlpack/base-codec": "workspace:^2.0.0",
     "nanobundle": "^2.0.0",
     "tsm": "^2.3.0",
-    "typescript": "^5.4.3",
+    "typescript": "^5.8.3",
     "uvu": "^0.5.6",
     "watchlist": "^0.3.1"
   }

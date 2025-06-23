@@ -816,7 +816,7 @@ __metadata:
   resolution: "@urlpack/base-codec@workspace:packages/base-codec"
   dependencies:
     nanobundle: "npm:^2.0.0"
-    typescript: "npm:^5.4.3"
+    typescript: "npm:^5.8.3"
   languageName: unknown
   linkType: soft
 
@@ -827,7 +827,7 @@ __metadata:
     "@urlpack/base-codec": "workspace:^2.0.0"
     nanobundle: "npm:^2.0.0"
     tsm: "npm:^2.3.0"
-    typescript: "npm:^5.4.3"
+    typescript: "npm:^5.8.3"
     uvu: "npm:^0.5.6"
     watchlist: "npm:^0.3.1"
   languageName: unknown
@@ -840,7 +840,7 @@ __metadata:
     "@urlpack/base-codec": "workspace:^2.0.0"
     nanobundle: "npm:^2.0.0"
     tsm: "npm:^2.3.0"
-    typescript: "npm:^5.4.3"
+    typescript: "npm:^5.8.3"
     uvu: "npm:^0.5.6"
     watchlist: "npm:^0.3.1"
   languageName: unknown
@@ -855,7 +855,7 @@ __metadata:
     benchmark: "npm:^2.1.4"
     nanobundle: "npm:^2.0.0"
     tsm: "npm:^2.3.0"
-    typescript: "npm:^5.4.3"
+    typescript: "npm:^5.8.3"
     uvu: "npm:^0.5.6"
     watchlist: "npm:^0.3.1"
   languageName: unknown
@@ -870,7 +870,7 @@ __metadata:
     "@urlpack/msgpack": "workspace:^2.0.0"
     nanobundle: "npm:^2.0.0"
     tsm: "npm:^2.3.0"
-    typescript: "npm:^5.4.3"
+    typescript: "npm:^5.8.3"
     uvu: "npm:^0.5.6"
     watchlist: "npm:^0.3.1"
   languageName: unknown
@@ -885,7 +885,7 @@ __metadata:
     esbuild: "npm:^0.20.2"
     nanobundle: "npm:^2.0.0"
     tsm: "npm:^2.3.0"
-    typescript: "npm:^5.4.3"
+    typescript: "npm:^5.8.3"
     uvu: "npm:^0.5.6"
     watchlist: "npm:^0.3.1"
   languageName: unknown
@@ -906,7 +906,7 @@ __metadata:
     msgpack5: "npm:^6.0.2"
     msgpackr: "npm:^1.10.1"
     tsm: "npm:^2.3.0"
-    typescript: "npm:^5.4.3"
+    typescript: "npm:^5.8.3"
     uvu: "npm:^0.5.6"
     watchlist: "npm:^0.3.1"
   languageName: unknown
@@ -921,7 +921,7 @@ __metadata:
     "@urlpack/msgpack": "workspace:^2.0.0"
     nanobundle: "npm:^2.0.0"
     tsm: "npm:^2.3.0"
-    typescript: "npm:^5.4.3"
+    typescript: "npm:^5.8.3"
     uvu: "npm:^0.5.6"
     watchlist: "npm:^0.3.1"
   languageName: unknown
@@ -4429,23 +4429,23 @@ __metadata:
   languageName: node
   linkType: hard
 
-"typescript@npm:^5.4.3":
-  version: 5.4.3
-  resolution: "typescript@npm:5.4.3"
+"typescript@npm:^5.8.3":
+  version: 5.8.3
+  resolution: "typescript@npm:5.8.3"
   bin:
     tsc: bin/tsc
     tsserver: bin/tsserver
-  checksum: 10c0/22443a8760c3668e256c0b34b6b45c359ef6cecc10c42558806177a7d500ab1a7d7aac1f976d712e26989ddf6731d2fbdd3212b7c73290a45127c1c43ba2005a
+  checksum: 10c0/5f8bb01196e542e64d44db3d16ee0e4063ce4f3e3966df6005f2588e86d91c03e1fb131c2581baf0fb65ee79669eea6e161cd448178986587e9f6844446dbb48
   languageName: node
   linkType: hard
 
-"typescript@patch:typescript@npm%3A^5.4.3#optional!builtin<compat/typescript>":
-  version: 5.4.3
-  resolution: "typescript@patch:typescript@npm%3A5.4.3#optional!builtin<compat/typescript>::version=5.4.3&hash=5adc0c"
+"typescript@patch:typescript@npm%3A^5.8.3#optional!builtin<compat/typescript>":
+  version: 5.8.3
+  resolution: "typescript@patch:typescript@npm%3A5.8.3#optional!builtin<compat/typescript>::version=5.8.3&hash=5786d5"
   bin:
     tsc: bin/tsc
     tsserver: bin/tsserver
-  checksum: 10c0/6e51f8b7e6ec55b897b9e56b67e864fe8f44e30f4a14357aad5dc0f7432db2f01efc0522df0b6c36d361c51f2dc3dcac5c832efd96a404cfabf884e915d38828
+  checksum: 10c0/39117e346ff8ebd87ae1510b3a77d5d92dae5a89bde588c747d25da5c146603a99c8ee588c7ef80faaf123d89ed46f6dbd918d534d641083177d5fac38b8a1cb
   languageName: node
   linkType: hard
 
