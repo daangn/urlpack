@@ -1,6 +1,6 @@
 {
   "name": "@urlpack/base10",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "license": "MIT",
   "homepage": "https://github.com/daangn/urlpack/tree/main/packages/base10",
   "repository": {
@@ -35,7 +35,7 @@
     "test:watch": "node --test --watch"
   },
   "dependencies": {
-    "@urlpack/base-codec": "workspace:^2.0.0"
+    "@urlpack/base-codec": "workspace:^2.0.1"
   },
   "devDependencies": {
     "@types/node": "^24.0.3",

@@ -1,5 +1,14 @@
 # @urlpack/qrjson
 
+## 1.0.1
+
+### Patch Changes
+
+- bfd0528: Add extensions TypeScript's for "NodeNext" resolution.
+- Updated dependencies [bfd0528]
+  - @urlpack/base10@1.0.1
+  - @urlpack/msgpack@2.0.1
+
 ## 1.0.0
 
 ### Major Changes
