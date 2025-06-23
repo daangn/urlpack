@@ -638,7 +638,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@urlpack/base-codec@workspace:^2.0.0, @urlpack/base-codec@workspace:packages/base-codec":
+"@urlpack/base-codec@workspace:^2.0.1, @urlpack/base-codec@workspace:packages/base-codec":
   version: 0.0.0-use.local
   resolution: "@urlpack/base-codec@workspace:packages/base-codec"
   dependencies:
@@ -647,23 +647,23 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@urlpack/base10@workspace:^1.0.0, @urlpack/base10@workspace:packages/base10":
+"@urlpack/base10@workspace:^1.0.1, @urlpack/base10@workspace:packages/base10":
   version: 0.0.0-use.local
   resolution: "@urlpack/base10@workspace:packages/base10"
   dependencies:
     "@types/node": "npm:^24.0.3"
-    "@urlpack/base-codec": "workspace:^2.0.0"
+    "@urlpack/base-codec": "workspace:^2.0.1"
     nanobundle: "npm:^2.1.0"
     typescript: "npm:^5.8.3"
   languageName: unknown
   linkType: soft
 
-"@urlpack/base58@workspace:^2.0.0, @urlpack/base58@workspace:packages/base58":
+"@urlpack/base58@workspace:^2.0.0, @urlpack/base58@workspace:^2.0.1, @urlpack/base58@workspace:packages/base58":
   version: 0.0.0-use.local
   resolution: "@urlpack/base58@workspace:packages/base58"
   dependencies:
     "@types/node": "npm:^24.0.3"
-    "@urlpack/base-codec": "workspace:^2.0.0"
+    "@urlpack/base-codec": "workspace:^2.0.1"
     nanobundle: "npm:^2.1.0"
     typescript: "npm:^5.8.3"
   languageName: unknown
@@ -674,7 +674,7 @@ __metadata:
   resolution: "@urlpack/base62@workspace:packages/base62"
   dependencies:
     "@types/node": "npm:^24.0.3"
-    "@urlpack/base-codec": "workspace:^2.0.0"
+    "@urlpack/base-codec": "workspace:^2.0.1"
     nanobundle: "npm:^2.1.0"
     typescript: "npm:^5.8.3"
   languageName: unknown
@@ -685,15 +685,15 @@ __metadata:
   resolution: "@urlpack/json@workspace:packages/json"
   dependencies:
     "@types/node": "npm:^24.0.3"
-    "@urlpack/base-codec": "workspace:^2.0.0"
-    "@urlpack/base58": "workspace:^2.0.0"
-    "@urlpack/msgpack": "workspace:^2.0.0"
+    "@urlpack/base-codec": "workspace:^2.0.1"
+    "@urlpack/base58": "workspace:^2.0.1"
+    "@urlpack/msgpack": "workspace:^2.0.1"
     nanobundle: "npm:^2.1.0"
     typescript: "npm:^5.8.3"
   languageName: unknown
   linkType: soft
 
-"@urlpack/msgpack@workspace:^2.0.0, @urlpack/msgpack@workspace:packages/msgpack":
+"@urlpack/msgpack@workspace:^2.0.0, @urlpack/msgpack@workspace:^2.0.1, @urlpack/msgpack@workspace:packages/msgpack":
   version: 0.0.0-use.local
   resolution: "@urlpack/msgpack@workspace:packages/msgpack"
   dependencies:
@@ -727,9 +727,9 @@ __metadata:
   resolution: "@urlpack/qrjson@workspace:packages/qrjson"
   dependencies:
     "@types/node": "npm:^24.0.3"
-    "@urlpack/base-codec": "workspace:^2.0.0"
-    "@urlpack/base10": "workspace:^1.0.0"
-    "@urlpack/msgpack": "workspace:^2.0.0"
+    "@urlpack/base-codec": "workspace:^2.0.1"
+    "@urlpack/base10": "workspace:^1.0.1"
+    "@urlpack/msgpack": "workspace:^2.0.1"
     nanobundle: "npm:^2.1.0"
     typescript: "npm:^5.8.3"
   languageName: unknown

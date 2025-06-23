@@ -1,6 +1,6 @@
 {
   "name": "@urlpack/json",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "license": "MIT",
   "homepage": "https://github.com/daangn/urlpack/tree/main/packages/json",
   "repository": {
@@ -35,12 +35,12 @@
     "test:watch": "node --test --watch"
   },
   "dependencies": {
-    "@urlpack/base58": "workspace:^2.0.0",
-    "@urlpack/msgpack": "workspace:^2.0.0"
+    "@urlpack/base58": "workspace:^2.0.1",
+    "@urlpack/msgpack": "workspace:^2.0.1"
   },
   "devDependencies": {
     "@types/node": "^24.0.3",
-    "@urlpack/base-codec": "workspace:^2.0.0",
+    "@urlpack/base-codec": "workspace:^2.0.1",
     "nanobundle": "^2.1.0",
     "typescript": "^5.8.3"
   }

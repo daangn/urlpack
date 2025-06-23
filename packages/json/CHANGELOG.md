@@ -1,5 +1,14 @@
 # @urlpack/json
 
+## 2.0.1
+
+### Patch Changes
+
+- bfd0528: Add extensions TypeScript's for "NodeNext" resolution.
+- Updated dependencies [bfd0528]
+  - @urlpack/base58@2.0.1
+  - @urlpack/msgpack@2.0.1
+
 ## 2.0.0
 
 ### Major Changes

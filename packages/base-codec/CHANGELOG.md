@@ -1,6 +1,13 @@
 # @urlpack/base-codec
 
+## 2.0.1
+
+### Patch Changes
+
+- bfd0528: Add extensions TypeScript's for "NodeNext" resolution.
+
 ## 2.0.0
+
 ### Major Changes
 
 - ebbf3d3: Drop UMD support and change to ESM-first package

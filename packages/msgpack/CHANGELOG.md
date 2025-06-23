@@ -1,5 +1,11 @@
 # @urlpack/msgpack
 
+## 2.0.1
+
+### Patch Changes
+
+- bfd0528: Add extensions TypeScript's for "NodeNext" resolution.
+
 ## 2.0.0
 
 ### Major Changes
