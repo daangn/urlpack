@@ -13,15 +13,15 @@
   },
   "devDependencies": {
     "@changesets/cli": "^2.27.1",
-    "@msgpack/msgpack": "^3.0.0-beta2",
+    "@msgpack/msgpack": "3.1.2",
     "@urlpack/base58": "workspace:^2.0.0",
     "@urlpack/msgpack": "workspace:^2.0.0",
-    "base-x": "^4.0.0",
-    "base58-js": "^2.0.0",
-    "benchmark": "^2.1.4",
-    "msgpack-lite": "^0.1.26",
-    "msgpack5": "^6.0.2",
-    "msgpackr": "^1.10.1",
+    "base-x": "5.0.1",
+    "base58-js": "3.0.2",
+    "mitata": "^1.0.34",
+    "msgpack-lite": "0.1.26",
+    "msgpack5": "6.0.2",
+    "msgpackr": "1.11.4",
     "typescript": "^5.8.3"
   },
   "packageManager": "yarn@4.9.2"

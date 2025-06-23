@@ -1,5 +1,4 @@
-import _benchmark from 'benchmark';
-const { Benchmark } = _benchmark;
+import { bench, do_not_optimize, barplot, summary, run } from 'mitata';
 
 const textDecoder = new TextDecoder();
 
@@ -54,14 +53,20 @@ const utf8DecodeJs = (function (bytes) {
 
 const textEncoded = new Uint8Array([0xac, 0x48, 0x65, 0x6c, 0x6c, 0x6f, 0x20, 0x57, 0x6f, 0x72, 0x6c, 0x64, 0x21]);
 
-new Benchmark.Suite()
-.add('TextDecoder', () => {
-  textDecoder.decode(textEncoded);
-})
-.add('utf8DecodeJs', () => {
-  utf8DecodeJs(textEncoded);
-})
-.on('cycle', event => {
-  console.log(event.target.toString());
-})
-.run();
+summary(() => {
+  barplot(() => {
+    bench('TextDecoder', () => {
+      do_not_optimize(
+        textDecoder.decode(textEncoded),
+      );
+    });
+
+    bench('utf8DecodeJs', () => {
+      do_not_optimize(
+        utf8DecodeJs(textEncoded),
+      );
+    });
+  });
+});
+
+run();

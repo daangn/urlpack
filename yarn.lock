@@ -491,10 +491,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@msgpack/msgpack@npm:^3.0.0-beta2":
-  version: 3.0.0-beta2
-  resolution: "@msgpack/msgpack@npm:3.0.0-beta2"
-  checksum: 10c0/f4dc4c210bb722f0f7407214334dda728263cce8eb0d3f9af1a40a48e13ce175b599de35a757dce5f1d92a74d3ce4d0242feb67516f308a626058d0f98f01c70
+"@msgpack/msgpack@npm:3.1.2":
+  version: 3.1.2
+  resolution: "@msgpack/msgpack@npm:3.1.2"
+  checksum: 10c0/4fee6dbea70a485d3a787ac76dd43687f489d662f22919237db1f2abbc3c88070c1d3ad78417ce6e764bcd041051680284654021f52068e0aff82d570cb942d5
   languageName: node
   linkType: hard
 
@@ -709,15 +709,15 @@ __metadata:
   resolution: "@urlpack/project@workspace:."
   dependencies:
     "@changesets/cli": "npm:^2.27.1"
-    "@msgpack/msgpack": "npm:^3.0.0-beta2"
+    "@msgpack/msgpack": "npm:3.1.2"
     "@urlpack/base58": "workspace:^2.0.0"
     "@urlpack/msgpack": "workspace:^2.0.0"
-    base-x: "npm:^4.0.0"
-    base58-js: "npm:^2.0.0"
-    benchmark: "npm:^2.1.4"
-    msgpack-lite: "npm:^0.1.26"
-    msgpack5: "npm:^6.0.2"
-    msgpackr: "npm:^1.10.1"
+    base-x: "npm:5.0.1"
+    base58-js: "npm:3.0.2"
+    mitata: "npm:^1.0.34"
+    msgpack-lite: "npm:0.1.26"
+    msgpack5: "npm:6.0.2"
+    msgpackr: "npm:1.11.4"
     typescript: "npm:^5.8.3"
   languageName: unknown
   linkType: soft
@@ -905,17 +905,17 @@ __metadata:
   languageName: node
   linkType: hard
 
-"base-x@npm:^4.0.0":
-  version: 4.0.0
-  resolution: "base-x@npm:4.0.0"
-  checksum: 10c0/0cb47c94535144ab138f70bb5aa7e6e03049ead88615316b62457f110fc204f2c3baff5c64a1c1b33aeb068d79a68092c08a765c7ccfa133eee1e70e4c6eb903
+"base-x@npm:5.0.1":
+  version: 5.0.1
+  resolution: "base-x@npm:5.0.1"
+  checksum: 10c0/4ab6b02262b4fd499b147656f63ce7328bd5f895450401ce58a2f9e87828aea507cf0c320a6d8725389f86e8a48397562661c0bca28ef3276a22821b30f7a713
   languageName: node
   linkType: hard
 
-"base58-js@npm:^2.0.0":
-  version: 2.0.0
-  resolution: "base58-js@npm:2.0.0"
-  checksum: 10c0/25a30866e36f01af6f33a3e28cf3a6ea43cc96532dbf06120379cd3e736d0282ed383a1bbbd3b28f5e0b0a226ec9351ff9e42f33d5e42708b40007dc72e63abb
+"base58-js@npm:3.0.2":
+  version: 3.0.2
+  resolution: "base58-js@npm:3.0.2"
+  checksum: 10c0/a79b9acd98528e3eeec50f3c89f3b34c5286a3d53f0f5b0fbcfaf1f3399cd9396bc3d68fded8a50613e15bd6455dfc31467db4780a241dc06677f7bfad2a8031
   languageName: node
   linkType: hard
 
@@ -923,16 +923,6 @@ __metadata:
   version: 1.5.1
   resolution: "base64-js@npm:1.5.1"
   checksum: 10c0/f23823513b63173a001030fae4f2dabe283b99a9d324ade3ad3d148e218134676f1ee8568c877cd79ec1c53158dcf2d2ba527a97c606618928ba99dd930102bf
-  languageName: node
-  linkType: hard
-
-"benchmark@npm:^2.1.4":
-  version: 2.1.4
-  resolution: "benchmark@npm:2.1.4"
-  dependencies:
-    lodash: "npm:^4.17.4"
-    platform: "npm:^1.3.3"
-  checksum: 10c0/510224c01f7578e9aa60cef67ec3dd8f84ac6670007bcc96285f87865375122aca0853ab4e542cc80cfeeed436356dfdd63bb66cb5e72365abb912685b2139be
   languageName: node
   linkType: hard
 
@@ -2473,13 +2463,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"lodash@npm:^4.17.4":
-  version: 4.17.21
-  resolution: "lodash@npm:4.17.21"
-  checksum: 10c0/d8cbea072bb08655bb4c989da418994b073a608dffa608b09ac04b43a791b12aeae7cd7ad919aa4c925f33b48490b5cfe6c1f71d827956071dae2e7bb3a6b74c
-  languageName: node
-  linkType: hard
-
 "lru-cache@npm:^4.0.1":
   version: 4.1.5
   resolution: "lru-cache@npm:4.1.5"
@@ -2677,6 +2660,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"mitata@npm:^1.0.34":
+  version: 1.0.34
+  resolution: "mitata@npm:1.0.34"
+  checksum: 10c0/a78a0dd18203e47f444915e64e900e9686d5b6c53c461105f79a6b4795983a2f1fa573ce6fea697ebb29c31ff31b2e7e4f0ce072e0611e0313ebef274a0a5811
+  languageName: node
+  linkType: hard
+
 "mixme@npm:^0.5.1":
   version: 0.5.4
   resolution: "mixme@npm:0.5.4"
@@ -2707,7 +2697,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"msgpack-lite@npm:^0.1.26":
+"msgpack-lite@npm:0.1.26":
   version: 0.1.26
   resolution: "msgpack-lite@npm:0.1.26"
   dependencies:
@@ -2721,7 +2711,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"msgpack5@npm:^6.0.2":
+"msgpack5@npm:6.0.2":
   version: 6.0.2
   resolution: "msgpack5@npm:6.0.2"
   dependencies:
@@ -2764,15 +2754,15 @@ __metadata:
   languageName: node
   linkType: hard
 
-"msgpackr@npm:^1.10.1":
-  version: 1.10.1
-  resolution: "msgpackr@npm:1.10.1"
+"msgpackr@npm:1.11.4":
+  version: 1.11.4
+  resolution: "msgpackr@npm:1.11.4"
   dependencies:
     msgpackr-extract: "npm:^3.0.2"
   dependenciesMeta:
     msgpackr-extract:
       optional: true
-  checksum: 10c0/2e6ed91af89ec15d1e5595c5b837a4adcbb185b0fbd4773d728ced89ab4abbdd3401f6777b193d487d9807e1cb0cf3da1ba9a0bd2d5a553e22355cea84a36bab
+  checksum: 10c0/171f6e15b628e91969cbb715c076e218886dc505fdac9ce31aa9e8641877cb5cf52d89fe0ca2930520711b1bbc9f792e10d0a9fc08806ad5d543c50abfab322c
   languageName: node
   linkType: hard
 
@@ -3065,13 +3055,6 @@ __metadata:
   dependencies:
     find-up: "npm:^4.0.0"
   checksum: 10c0/c56bda7769e04907a88423feb320babaed0711af8c436ce3e56763ab1021ba107c7b0cafb11cde7529f669cfc22bffcaebffb573645cbd63842ea9fb17cd7728
-  languageName: node
-  linkType: hard
-
-"platform@npm:^1.3.3":
-  version: 1.3.6
-  resolution: "platform@npm:1.3.6"
-  checksum: 10c0/69f2eb692e15f1a343dd0d9347babd9ca933824c8673096be746ff66f99f2bdc909fadd8609076132e6ec768349080babb7362299f2a7f885b98f1254ae6224b
   languageName: node
   linkType: hard
 

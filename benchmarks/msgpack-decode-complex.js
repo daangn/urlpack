@@ -1,5 +1,4 @@
-import _benchmark from 'benchmark';
-const { Benchmark } = _benchmark;
+import { group, summary, barplot, bench, run } from 'mitata';
 
 import { makeMessagePackDecoder } from '@urlpack/msgpack';
 const urlpack = makeMessagePackDecoder();
@@ -16,45 +15,48 @@ import * as msgpackr from 'msgpackr';
 const complex1 = new Uint8Array([0x82, 0xa1, 0x61, 0x81, 0xa1, 0x62, 0xa1, 0x63, 0xa1, 0x63, 0x94, 0xc0, 0xc0, 0xc0, 0x81, 0xa1, 0x64, 0xa1, 0x63]);
 const complex2 = new Uint8Array([0x88, 0xa3, 0x69, 0x6e, 0x74, 0x1, 0xa5, 0x66, 0x6c, 0x6f, 0x61, 0x74, 0xcb, 0x3f, 0xe0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0xa7, 0x62, 0x6f, 0x6f, 0x6c, 0x65, 0x61, 0x6e, 0xc3, 0xa4, 0x6e, 0x75, 0x6c, 0x6c, 0xc0, 0xa6, 0x73, 0x74, 0x72, 0x69, 0x6e, 0x67, 0xa7, 0x66, 0x6f, 0x6f, 0x20, 0x62, 0x61, 0x72, 0xa5, 0x61, 0x72, 0x72, 0x61, 0x79, 0x92, 0xa3, 0x66, 0x6f, 0x6f, 0xa3, 0x62, 0x61, 0x72, 0xa6, 0x6f, 0x62, 0x6a, 0x65, 0x63, 0x74, 0x82, 0xa3, 0x66, 0x6f, 0x6f, 0x1, 0xa3, 0x62, 0x61, 0x7a, 0xcb, 0x3f, 0xe0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0xa4, 0x64, 0x61, 0x74, 0x65, 0xd7, 0xff, 0xbe, 0x7f, 0x17, 0x0, 0x60, 0xf8, 0x3c, 0x5f]);
 
-new Benchmark.Suite()
-.add('warmup', () => {
-  urlpack.decode(complex1);
-  msgpack.decode(complex1);
-  msgpack5.decode(complex1);
-  msgpackLite.decode(complex1);
-  msgpackr.decode(complex1);
-})
-.add('decode complex 1 - @urlpack/msgpack', () => {
-  urlpack.decode(complex1);
-})
-.add('decode complex 1 - @msgpack/msgpack', () => {
-  msgpack.decode(complex1);
-})
-.add('decode complex 1 - msgpack5', () => {
-  msgpack5.decode(complex1);
-})
-.add('decode complex 1 - msgpack-lite', () => {
-  msgpackLite.decode(complex1);
-})
-.add('decode complex 1 - msgpackr', () => {
-  msgpackr.decode(complex1);
-})
-.add('decode complex 2 - @urlpack/msgpack', () => {
-  urlpack.decode(complex2);
-})
-.add('decode complex 2 - @msgpack/msgpack', () => {
-  msgpack.decode(complex2);
-})
-.add('decode complex 2 - msgpack5', () => {
-  msgpack5.decode(complex2);
-})
-.add('decode complex 2 - msgpack-lite', () => {
-  msgpackLite.decode(complex2);
-})
-.add('decode complex 2 - msgpackr', () => {
-  msgpackr.decode(complex2);
-})
-.on('cycle', event => {
-  console.log(event.target.toString());
-})
-.run();
+group('decode complex 1', () => {
+  summary(() => {
+    barplot(() => {
+      bench('@urlpack/msgpack', () => {
+        urlpack.decode(complex1);
+      }).gc('inner').baseline();
+      bench('@msgpack/msgpack', () => {
+        msgpack.decode(complex1);
+      }).gc('inner');
+      bench('msgpack5', () => {
+        msgpack5.decode(complex1);
+      }).gc('inner');
+      bench('msgpack-lite', () => {
+        msgpackLite.decode(complex1);
+      }).gc('inner');
+      bench('msgpackr', () => {
+        msgpackr.decode(complex1);
+      }).gc('inner');
+    });
+  });
+});
+
+group('decode complex 2', () => {
+  summary(() => {
+    barplot(() => {
+      bench('@urlpack/msgpack', () => {
+        urlpack.decode(complex2);
+      }).gc('inner').baseline();
+      bench('@msgpack/msgpack', () => {
+        msgpack.decode(complex2);
+      }).gc('inner');
+      bench('msgpack5', () => {
+        msgpack5.decode(complex2);
+      }).gc('inner');
+      bench('msgpack-lite', () => {
+        msgpackLite.decode(complex2);
+      }).gc('inner');
+      bench('msgpackr', () => {
+        msgpackr.decode(complex2);
+      }).gc('inner');
+    });
+  });
+});
+
+run();

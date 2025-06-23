@@ -1,5 +1,4 @@
-import _benchmark from 'benchmark';
-const { Benchmark } = _benchmark;
+import { group, bench, barplot, summary, run, do_not_optimize } from 'mitata';
 
 import { makeBaseEncoder, makeBaseDecoder } from '@urlpack/base-codec';
 import baseXCodec from 'base-x';
@@ -17,26 +16,52 @@ Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem
 `);
 const text = urlpack.encode(buffer);
 
-new Benchmark.Suite()
-.add('@urlpack/base-codec encode', () => {
-  urlpack.encode(buffer);
-})
-.add('@urlpack/base-codec decode', () => {
-  urlpack.decode(text);
-})
-.add('base-x encode', () => {
-  baseX.encode(buffer);
-})
-.add('base-x decode', () => {
-  baseX.decode(text);
-})
-.add('base58-js encode', () => {
-  base58js.binary_to_base58(buffer);
-})
-.add('base58-js decode', () => {
-  base58js.base58_to_binary(text);
-})
-.on('cycle', event => {
-  console.log(event.target.toString());
-})
-.run();
+group('encode', () => {
+  summary(() => {
+    barplot(() => {
+      bench('@urlpack/base-codec encode', () => {
+        do_not_optimize(
+          urlpack.encode(buffer),
+        );
+      }).baseline();
+
+      bench('base-x encode', () => {
+        do_not_optimize(
+          baseX.encode(buffer),
+        );
+      });
+
+      bench('base58-js encode', () => {
+        do_not_optimize(
+          base58js.binary_to_base58(buffer),
+        );
+      });
+    });
+  });
+});
+
+group('decode', () => {
+  summary(() => {
+    barplot(() => {
+      bench('@urlpack/base-codec decode', () => {
+        do_not_optimize(
+          urlpack.decode(text),
+        );
+      }).baseline();
+
+      bench('base-x decode', () => {
+        do_not_optimize(
+          baseX.decode(text),
+        );
+      });
+
+      bench('base58-js decode', () => {
+        do_not_optimize(
+          base58js.base58_to_binary(text),
+        );
+      });
+    });
+  });
+});
+
+run();

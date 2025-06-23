@@ -1,5 +1,4 @@
-import _benchmark from 'benchmark';
-const { Benchmark } = _benchmark;
+import { group, summary, barplot, bench, run } from 'mitata';
 
 import { makeMessagePackEncoder } from '@urlpack/msgpack';
 const urlpack = makeMessagePackEncoder();
@@ -34,45 +33,49 @@ const complex2 = {
   'date': new Date(1626881119799),
 };
 
-new Benchmark.Suite()
-.add('warmup', () => {
-  urlpack.encode(complex1);
-  msgpack.encode(complex1);
-  msgpack5.encode(complex1);
-  msgpackLite.encode(complex1);
-  msgpackr.encode(complex1);
-})
-.add('encode complex 1 - @urlpack/msgpack', () => {
-  urlpack.encode(complex1);
-})
-.add('encode complex 1 - @msgpack/msgpack', () => {
-  msgpack.encode(complex1);
-})
-.add('encode complex 1 - msgpack5', () => {
-  msgpack5.encode(complex1);
-})
-.add('encode complex 1 - msgpack-lite', () => {
-  msgpackLite.encode(complex1);
-})
-.add('encode complex 1 - msgpackr', () => {
-  msgpackr.encode(complex1);
-})
-.add('encode complex 2 - @urlpack/msgpack', () => {
-  urlpack.encode(complex2);
-})
-.add('encode complex 2 - @msgpack/msgpack', () => {
-  msgpack.encode(complex2);
-})
-.add('encode complex 2 - msgpack5', () => {
-  msgpack5.encode(complex2);
-})
-.add('encode complex 2 - msgpack-lite', () => {
-  msgpackLite.encode(complex2);
-})
-.add('encode complex 2 - msgpackr', () => {
-  msgpackr.encode(complex2);
-})
-.on('cycle', event => {
-  console.log(event.target.toString());
-})
-.run();
+
+group('encode complex1', () => {
+  summary(() => {
+    barplot(() => {
+      bench('@urlpack/msgpack', () => {
+        urlpack.encode(complex1);
+      }).gc('inner').baseline();
+      bench('@msgpack/msgpack', () => {
+        msgpack.encode(complex1);
+      }).gc('inner');
+      bench('msgpack5', () => {
+        msgpack5.encode(complex1);
+      }).gc('inner');
+      bench('msgpack-lite', () => {
+        msgpackLite.encode(complex1);
+      }).gc('inner');
+      bench('msgpackr', () => {
+        msgpackr.encode(complex1);
+      }).gc('inner');
+    });
+  });
+});
+
+group('encode complex 2', () => {
+  summary(() => {
+    barplot(() => {
+      bench('@urlpack/msgpack', () => {
+        urlpack.encode(complex2);
+      }).gc('inner').baseline();
+      bench('@msgpack/msgpack', () => {
+        msgpack.encode(complex2);
+      }).gc('inner');
+      bench('msgpack5', () => {
+        msgpack5.encode(complex2);
+      }).gc('inner');
+      bench('msgpack-lite', () => {
+        msgpackLite.encode(complex2);
+      }).gc('inner');
+      bench('msgpackr', () => {
+        msgpackr.encode(complex2);
+      }).gc('inner');
+    });
+  });
+});
+
+run();

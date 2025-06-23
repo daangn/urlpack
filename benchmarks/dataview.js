@@ -1,29 +1,39 @@
-import _benchmark from 'benchmark';
-const { Benchmark } = _benchmark;
+import { bench, do_not_optimize, run } from 'mitata';
 
 const bin = new Uint8Array(Array(10000).fill(0));
 const staticView = new DataView(bin.buffer);
 const staticViewOffset = new DataView(bin.buffer, 5000);
 
-new Benchmark.Suite()
-.add('direct access', () => {
-  bin[5000]
-})
-.add('dataview from offset (static)', () => {
-  staticViewOffset.getUint8(0)
-})
-.add('dataview from offset', () => {
+bench('direct access', () => {
+  do_not_optimize(
+    bin[5000],
+  );
+});
+
+bench('dataview from offset (static)', () => {
+  do_not_optimize(
+    staticViewOffset.getUint8(0),
+  );
+});
+
+bench('dataview from offset', () => {
   let view = new DataView(bin.buffer, 5000)
-  view.getUint8(0)
-})
-.add('dataview get offset (static)', () => {
-  staticView.getUint8(0, 5000)
-})
-.add('dataview get offset', () => {
+  do_not_optimize(
+    view.getUint8(0),
+  );
+});
+
+bench('dataview get offset (static)', () => {
+  do_not_optimize(
+    staticView.getUint8(0, 5000),
+  );
+});
+
+bench('dataview get offset', () => {
   let view = new DataView(bin.buffer)
-  view.getUint8(0, 5000)
-})
-.on('cycle', event => {
-  console.log(event.target.toString());
-})
-.run();
+  do_not_optimize(
+    view.getUint8(0, 5000),
+  );
+});
+
+run();
