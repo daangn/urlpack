@@ -86,7 +86,7 @@ type ext = {
   decode: (. Uint8Array.t, int) => result,
 }
 
-@module("./ext/TimestampDecoder") external timestampExt: ext = "timestamDecoder"
+@module("./ext/TimestampDecoder.ts") external timestampExt: ext = "timestamDecoder"
 
 type t = {
   textDecoder: TextDecoder.t,

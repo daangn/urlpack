@@ -3,7 +3,7 @@
 import * as Js_exn from "@rescript/std/lib/es6/js_exn.js";
 import * as Js_dict from "@rescript/std/lib/es6/js_dict.js";
 import * as Pervasives from "@rescript/std/lib/es6/pervasives.js";
-import { timestampDecoder as timestampExt } from "./ext/TimestampDecoder";
+import { timestampDecoder as timestampExt } from "./ext/TimestampDecoder.ts";
 
 var decode2 = (function (_t, bytes) {
     let offset = 0;
