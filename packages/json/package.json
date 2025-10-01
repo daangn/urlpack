@@ -12,6 +12,7 @@
   "main": "./src/index.ts",
   "publishConfig": {
     "access": "public",
+    "provenance": true,
     "main": "./lib/index.mjs",
     "module": "./lib/index.mjs",
     "types": "./lib/index.d.ts",
