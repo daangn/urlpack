@@ -20,7 +20,7 @@
     "base58-js": "3.0.2",
     "mitata": "^1.0.34",
     "msgpack-lite": "0.1.26",
-    "msgpack5": "6.0.2",
+    "msgpack5": "6.1.0",
     "msgpackr": "1.11.4",
     "typescript": "^5.8.3"
   },
